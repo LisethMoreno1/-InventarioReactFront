@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import SideBarApp from '../components/Layout/SideBarApp';
+import PermanentDrawerLeft from '../components/Layout/Sidebar';
 
 const SideBar: React.FC = () => {
   return (
     <Container>
-      <SideBarApp />
+      <PermanentDrawerLeft />
     </Container>
   );
 };
