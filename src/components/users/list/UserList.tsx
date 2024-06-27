@@ -55,6 +55,9 @@ const UserList: React.FC = () => {
       field: 'role', headerName: 'Role', width: 150, renderCell: ({ row }) => row?.role?.typeOfRole,
     },
     {
+      field: 'Genre', headerName: 'Genre', width: 150, renderCell: ({ row }) => row?.genre?.genre,
+    },
+    {
       field: 'Acciones',
       headerName: 'Acciones',
       width: 250,

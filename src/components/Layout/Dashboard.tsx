@@ -9,18 +9,25 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+/* import Badge from '@mui/material/Badge';
+ */
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+/* import NotificationsIcon from '@mui/icons-material/Notifications';
+ */
 import Orders from './Orders';
 import Deposits from './Deposits';
 import Chart from './Chart';
 import { mainListItems, secondaryListItems } from './listItems';
+import { Avatar, Menu, MenuItem, Tooltip } from '@mui/material';
+
+
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 
 function Copyright(props: any) {
@@ -95,6 +102,18 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -127,9 +146,38 @@ export default function Dashboard() {
               Dashboard
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              {/*        <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon /> */}
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Herramientas">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              {/*             </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>

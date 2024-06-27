@@ -10,6 +10,9 @@ export interface User {
     secondLastName: string;
     phoneNumber: string;
     email: string;
+    genre: {
+      genre : string;
+    };
     role: {
       typeOfRole: string;
     };
