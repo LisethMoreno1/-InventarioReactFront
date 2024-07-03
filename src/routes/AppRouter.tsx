@@ -5,55 +5,56 @@ import { RouteType } from "./route";
 import PermanentDrawerLeft from "../components/Layout/Sidebar";
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import Dashboard from "../components/Layout/Dashboard";
+/* import Dashboard from "../components/Layout/Dashboard";
+ */
 const AppRouter: RouteType[] = [
-
   {
-    path: "/prueba",
+    path: "/",
     element: <PermanentDrawerLeft />,
-    state: "",
-    sidebarProps: {
+    state: "prueba",
+    /* sidebarProps: {
       displayText: "",
       icon: ""
-    },
+    } */
   },
   {
-    index: true,
     path: "/login",
     element: <LoginPage />,
-    state: "login",
-    sidebarProps: {
-      displayText: "Login",
+    state: "",
+    /* sidebarProps: {
+      displayText: "",
       icon: ""
-    }
+    } */
   },
   {
     path: "/registre",
-    element: <RegistrePage />,
+    element: "",
     state: "registre",
     sidebarProps: {
-      displayText: "Registre",
+      displayText: "Usuario",
       icon: <PersonOutlineIcon />
     },
-  },
-  {
-    path: "/lista",
-    element: <UserList />,
-    state: "lista",
-    sidebarProps: {
-      displayText: "Lista de Usuarios",
-      icon: <InboxIcon />
-    },
-  }, {
-    path: "/",
-    element: <Dashboard />,
-    state: "",
-    sidebarProps: {
-      displayText: "",
-      icon: ""
-    },
-  }
+    children: [
+      {
+        path: "Registro de Usuario",
+        element: <RegistrePage />,
+        state: "registro",
+        sidebarProps: {
+          displayText: "Registro de Usuario",
+          icon: <InboxIcon />
+        }
+      }, {
+        path: "Lista de Usuario",
+        element: <UserList />,
+        state: "lista",
+        sidebarProps: {
+          displayText: "Lista de Usuario",
+          icon: <InboxIcon />
+        }
+      }
+    ],
 
+  }
 ];
 
 export default AppRouter;

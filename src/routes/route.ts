@@ -2,12 +2,13 @@ import { ReactNode } from "react";
 
 export type RouteType = {
   element: ReactNode; 
-  state: string; 
+  state?: string; 
   index?: boolean; 
   path?: string; 
-  child?: RouteType[]; 
+  children?: RouteType[]; 
+  icon?: ReactNode;
   sidebarProps?: {
-    displayText: string; 
+    displayText?: string; 
     icon?: ReactNode;
   };
 };

@@ -1,18 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AppRouter from "./routes/AppRouter"; 
+import AppRouter from "./routes/AppRouter";
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         {AppRouter.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            element={route.element}
-          >
-            {route.child && route.child.map((childRoute, childIndex) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children?.map((childRoute, childIndex) => (
               <Route
                 key={childIndex}
                 path={childRoute.path}
@@ -24,6 +20,6 @@ const App: React.FC = () => {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
