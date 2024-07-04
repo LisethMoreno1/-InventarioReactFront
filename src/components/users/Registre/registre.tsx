@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { registreSchema } from '../../../types/users/registre/registreSchemas';
+import { Roles } from '../../../interfaces/Rol/rol';
+import { typeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentification';
+import { PostUsers } from '../../../services/api/userService/userService';
+import { getRoles } from '../../../services/api/RolesService/rolesService';
+import { getTypeOfIdentifications } from '../../../services/api/typeOfIdentificationService/typeOfIdentificationService';
+import { Genre } from '../../../interfaces/typeOfGenders/typeOfGenders';
+import { getTypeOfGenders } from '../../../services/api/genreService/genreService';
 
 const Registre: React.FC = () => {
+
+    const [roles, setRoles] = useState<Roles[]>([]);
+    const [typeOfIdentifications, setTypeOfIdentifications] = useState<typeOfIdentification[]>([]);
+    const [typeOfGenders, setTypeOfGenders] = useState<Genre[]>([]);
+
+
     const formik = useFormik({
         initialValues: {
-            typeOfIdentification: '',
+            /*  id: 0, */
+            typeOfIdentification: 0,
             identificationNumber: '',
             firstName: '',
             middleName: '',
@@ -13,13 +27,77 @@ const Registre: React.FC = () => {
             secondLastName: '',
             phoneNumber: '',
             email: '',
-            typeOfRole: '',
+            genre: 0,
+            typeOfRole: 0
+
         },
         validationSchema: registreSchema,
-        onSubmit: (values) => {
-            console.log('Datos del formulario:', values);
+        onSubmit: async (values, { resetForm }) => {
+            console.log(values)
+            try {
+                const userRequest = {
+                    ...values,
+                    typeOfIdentification: {
+                        name:
+                            typeOfIdentifications?.find((x) => x?.id === Number(values?.typeOfIdentification || ""))?.name || '',
+                    },
+                    genre: {
+                        genre:
+                            typeOfGenders?.find((x) => x?.id === Number(values?.genre || ""))?.genre || '',
+                    },
+                    role: {
+                        typeOfRole:
+                            roles?.find((x) => x?.id === Number(values?.typeOfRole || ""))?.typeOfRole || '',
+                    },
+                };
+                await PostUsers(userRequest);
+                alert('Usuario registrado exitosamente');
+                resetForm();
+            } catch (error) {
+                console.error('Error al registrar usuario:', error);
+                alert('Hubo un problema al registrar el usuario');
+            }
         },
     });
+
+    useEffect(() => {
+        const fetchRoles = async () => {
+            try {
+                const rolesData = await getRoles();
+                setRoles(rolesData);
+            } catch (error) {
+                console.error('Error al obtener roles:', error);
+            }
+        };
+
+        fetchRoles();
+    }, []);
+
+    useEffect(() => {
+        const fetchTypeOfGenders = async () => {
+            try {
+                const Genre = await getTypeOfGenders();
+                setTypeOfGenders(Genre);
+            } catch (error) {
+                console.error('Error al obtener generos:', error);
+            }
+        };
+
+        fetchTypeOfGenders();
+    }, []);
+
+    useEffect(() => {
+        const fetchTypeOfIdentifications = async () => {
+            try {
+                const typeOfIdentificationsData = await getTypeOfIdentifications();
+                setTypeOfIdentifications(typeOfIdentificationsData);
+            } catch (error) {
+                console.error('Error al obtener typeOfIdentifications:', error);
+            }
+        };
+
+        fetchTypeOfIdentifications();
+    }, []);
 
     return (
         <div>
@@ -35,9 +113,9 @@ const Registre: React.FC = () => {
                         value={formik.values.typeOfIdentification}
                     >
                         <option value="">Seleccione...</option>
-                        <option value="dni">DNI</option>
-                        <option value="passport">Pasaporte</option>
-                        <option value="license">Licencia de Conducir</option>
+                        {typeOfIdentifications.map(type => (
+                            <option key={type.id} value={type.id}>{type.name}</option>
+                        ))}
                     </select>
                     {formik.touched.typeOfIdentification && formik.errors.typeOfIdentification ? (
                         <p style={{ color: 'red' }}>{formik.errors.typeOfIdentification}</p>
@@ -152,6 +230,23 @@ const Registre: React.FC = () => {
                     ) : null}
                 </div>
 
+                <div>
+                    <label htmlFor="genre">Género</label>
+                    <select
+                        name="genre"
+                        id="genre"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.genre}
+                    >
+                        <option value="">Seleccione...</option>
+                        {typeOfGenders.map((genre) => (
+                            <option key={genre.id} value={genre.id}>
+                                {genre.genre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 <div>
                     <label htmlFor="typeOfRole">Tipo de Rol</label>
@@ -163,16 +258,16 @@ const Registre: React.FC = () => {
                         value={formik.values.typeOfRole}
                     >
                         <option value="">Seleccione...</option>
-                        <option value="dni">Administrador</option>
-                        <option value="passport">Vendedor</option>
-                        <option value="license">Usuario</option>
+                        {roles.map(role => (
+                            <option key={role.id} value={role.id}>{role.typeOfRole}</option>
+                        ))}
                     </select>
                     {formik.touched.typeOfRole && formik.errors.typeOfRole ? (
                         <p style={{ color: 'red' }}>{formik.errors.typeOfRole}</p>
                     ) : null}
                 </div>
 
-                <button type="submit">Iniciar Sesión</button>
+                <button type="submit">Registrar Usuario</button>
             </form>
         </div>
     );

@@ -1,8 +1,9 @@
 import { User } from "../../../interfaces/Users/User";
+import config from '../../../config/config.json';
+ 
+const baseUrl = config.baseUrl;
 
-const baseUrl = 'http://localhost:3000/api'; 
-
-
+/* METODO POST */
 export const PostUsers = async (data: User): Promise<User[]> => {
   const response = await fetch(`${baseUrl}/user`, {
     method: 'POST',
@@ -18,6 +19,7 @@ export const PostUsers = async (data: User): Promise<User[]> => {
   return await response.json();
 };
 
+/* METODO GET */
 export const getUsers = async (): Promise<User[]> => {
   const response = await fetch(`${baseUrl}/user`, {
     method: 'GET',

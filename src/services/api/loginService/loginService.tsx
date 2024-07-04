@@ -1,11 +1,13 @@
 import { LoginData, LoginResponse } from "../../../interfaces/Login/Login";
-
-const baseUrl = 'http://localhost:3000/auth';
-
+import config from '../../../config/config.json';
 
 
+const authUrl = config.baseUrl;
+
+
+/* METODO POST */
 export const postLogin = async (data: LoginData): Promise<LoginResponse> => {
-    const response = await fetch(`${baseUrl}/login`, {
+    const response = await fetch(`${authUrl}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
