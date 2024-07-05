@@ -5,6 +5,7 @@ import { RouteType } from "./route";
 import PermanentDrawerLeft from "../components/Layout/Sidebar";
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
 /* import Dashboard from "../components/Layout/Dashboard";
  */
 const AppRouter: RouteType[] = [
@@ -54,6 +55,34 @@ const AppRouter: RouteType[] = [
       }
     ],
 
+  },
+  {
+    path: "/Mantenimiento",
+    element: "",
+    state: "Mantenimiento",
+    sidebarProps: {
+      displayText: "Parametros",
+      icon: <PersonOutlineIcon />
+    },
+    children: [
+      {
+        path: "Tipo de Identificacion",
+        element: <TypeOfIdentificationPage />,
+        state: "Tipo de Identificacion",
+        sidebarProps: {
+          displayText: "Tipo de Identificacion",
+          icon: <InboxIcon />
+        }
+      }, /* {
+        path: "Lista de Usuario",
+        element: <UserList />,
+        state: "lista",
+        sidebarProps: {
+          displayText: "Lista de Usuario",
+          icon: <InboxIcon />
+        }
+      } */
+    ],
   }
 ];
 
