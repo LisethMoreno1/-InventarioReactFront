@@ -1,30 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { Avatar, IconButton, Menu, MenuItem, Tooltip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Link } from 'react-router-dom';
+import { Box, Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider, ListItem, ListItemButton, ListItemIcon, ListItemText, Avatar, IconButton, Menu, Tooltip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { Link, Outlet } from 'react-router-dom';
 import AppRouter from '../../routes/AppRouter';
 import { RouteType } from '../../routes/route';
 
-/* const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
- */const drawerWidth = 250;
+const drawerWidth = 250;
 
 const PermanentDrawerLeft: React.FC = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
@@ -36,7 +25,7 @@ const PermanentDrawerLeft: React.FC = () => {
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
-        <Toolbar sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="h6" noWrap component="div">
             Inventario
           </Typography>
@@ -48,7 +37,6 @@ const PermanentDrawerLeft: React.FC = () => {
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
-              id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
@@ -62,11 +50,7 @@ const PermanentDrawerLeft: React.FC = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-         {/*  {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}  */}
+              {/* Añade aquí los items del menú si es necesario */}
             </Menu>
           </Box>
         </Toolbar>
@@ -101,7 +85,7 @@ const PermanentDrawerLeft: React.FC = () => {
                       <ListItem key={childIndex} disablePadding>
                         <ListItemButton
                           component={Link as React.ElementType}
-                          to={`${route.path}/${childRoute.path}`} // Navegación combinada
+                          to={`${route.path}/${childRoute.path}`}
                           sx={{ pl: 4 }}
                         >
                           <ListItemIcon>
@@ -132,9 +116,10 @@ const PermanentDrawerLeft: React.FC = () => {
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 1 }}
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
+        <Outlet /> {/* Renderiza el contenido de las rutas */}
       </Box>
     </Box>
   );

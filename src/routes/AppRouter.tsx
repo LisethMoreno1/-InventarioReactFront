@@ -1,31 +1,20 @@
 import LoginPage from "../pages/LoginPage";
 import UserList from "../components/users/list/UserList";
 import RegistrePage from "../pages/registre";
-import { RouteType } from "./route";
-import PermanentDrawerLeft from "../components/Layout/Sidebar";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { RouteType } from "./route"; import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
-/* import Dashboard from "../components/Layout/Dashboard";
- */
+import SideBar from "../pages/SideBar";
+
+
 const AppRouter: RouteType[] = [
   {
     path: "/",
-    element: <PermanentDrawerLeft />,
-    state: "prueba",
-    /* sidebarProps: {
-      displayText: "",
-      icon: ""
-    } */
+    element: <>ghg</>,
   },
   {
     path: "/login",
     element: <LoginPage />,
-    state: "",
-    /* sidebarProps: {
-      displayText: "",
-      icon: ""
-    } */
   },
   {
     path: "/registre",
@@ -73,15 +62,7 @@ const AppRouter: RouteType[] = [
           displayText: "Tipo de Identificacion",
           icon: <InboxIcon />
         }
-      }, /* {
-        path: "Lista de Usuario",
-        element: <UserList />,
-        state: "lista",
-        sidebarProps: {
-          displayText: "Lista de Usuario",
-          icon: <InboxIcon />
-        }
-      } */
+      }
     ],
   }
 ];
