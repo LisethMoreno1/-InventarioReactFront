@@ -10,7 +10,7 @@ interface DataGridProps {
 
 const DataGridComponent: React.FC<DataGridProps> = ({ rows, columns }) => {
     return (
-        <Box sx={{ height: 400, width: '100%' }}>
+        <Box sx={{ height: 400, width: 'auto', marginLeft: "10%"}}>
             <DataGrid
                 rows={rows}
                 columns={columns}

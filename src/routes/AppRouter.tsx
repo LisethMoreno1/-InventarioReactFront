@@ -1,16 +1,15 @@
-import LoginPage from "../pages/LoginPage";
-import UserList from "../components/users/list/UserList";
-import RegistrePage from "../pages/registre";
-import { RouteType } from "./route"; import InboxIcon from '@mui/icons-material/MoveToInbox';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import React from "react";
+import LoginPage from "../pages/LoginPage";
 import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
-import SideBar from "../pages/SideBar";
-
+import RegistrePage from "../pages/registre";
+import { RouteType } from "./route";
+import UserList from '../components/users/list/UserList';
 
 const AppRouter: RouteType[] = [
   {
     path: "/",
-    element: <>ghg</>,
   },
   {
     path: "/login",
@@ -18,8 +17,6 @@ const AppRouter: RouteType[] = [
   },
   {
     path: "/registre",
-    element: "",
-    state: "registre",
     sidebarProps: {
       displayText: "Usuario",
       icon: <PersonOutlineIcon />
@@ -28,7 +25,6 @@ const AppRouter: RouteType[] = [
       {
         path: "Registro de Usuario",
         element: <RegistrePage />,
-        state: "registro",
         sidebarProps: {
           displayText: "Registro de Usuario",
           icon: <InboxIcon />
@@ -36,7 +32,6 @@ const AppRouter: RouteType[] = [
       }, {
         path: "Lista de Usuario",
         element: <UserList />,
-        state: "lista",
         sidebarProps: {
           displayText: "Lista de Usuario",
           icon: <InboxIcon />
@@ -47,8 +42,6 @@ const AppRouter: RouteType[] = [
   },
   {
     path: "/Mantenimiento",
-    element: "",
-    state: "Mantenimiento",
     sidebarProps: {
       displayText: "Parametros",
       icon: <PersonOutlineIcon />
@@ -57,7 +50,6 @@ const AppRouter: RouteType[] = [
       {
         path: "Tipo de Identificacion",
         element: <TypeOfIdentificationPage />,
-        state: "Tipo de Identificacion",
         sidebarProps: {
           displayText: "Tipo de Identificacion",
           icon: <InboxIcon />

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import ComponenteButton from '../../componentesGenerales/Boton/boton.components';
 import customTheme from './Styles';
+import React from 'react';
 
 
 function TypeOfIdentification() {

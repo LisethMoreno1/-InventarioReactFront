@@ -136,7 +136,7 @@ const UserList: React.FC = () => {
 
   return (
     <div>
-      <h1>Lista de usuarios</h1>
+     
       <DataGridComponent rows={users} columns={columns} />
     </div>
   );
