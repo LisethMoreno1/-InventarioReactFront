@@ -1,65 +1,122 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { loginSchema } from '../../types/Login/loginSchemas';
-import { postLogin } from '../../services/api/loginService/loginService';
+import {
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  Grid,
+  Link as MuiLink,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useFormik } from "formik";
+import React, { useState } from "react";
+import { postLogin } from "../../services/api/loginService/loginService";
+import { loginSchema } from "../../types/Login/loginSchemas";
 
 const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const formik = useFormik({
     initialValues: {
-      identificationNumber: '',
-      password: '',
+      identificationNumber: "",
+      password: "",
     },
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       setError(null);
       try {
         const response = await postLogin(values);
-        console.log('Login successful:', response);
+        console.log("Login successful:", response);
       } catch (error) {
-        console.error('Login failed:', error);
-        setError('Nombre de usuario o contraseña inválidos');
+        console.error("Login failed:", error);
+        setError("Nombre de usuario o contraseña inválidos");
       }
     },
   });
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label htmlFor="identificationNumber">Número de Identificación</label>
-          <input
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Accede a tu cuenta
+        </Typography>
+        <Box
+          component="form"
+          noValidate
+          sx={{ mt: 1 }}
+          onSubmit={formik.handleSubmit}
+        >
+          <TextField
             type="text"
             id="identificationNumber"
             name="identificationNumber"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.identificationNumber}
+            margin="normal"
+            required
+            fullWidth
+            label="Identification Number"
+            autoComplete="identificationNumber"
+            autoFocus
           />
-          {formik.touched.identificationNumber && formik.errors.identificationNumber ? (
-            <p style={{ color: 'red' }}>{formik.errors.identificationNumber}</p>
+          {formik.touched.identificationNumber &&
+          formik.errors.identificationNumber ? (
+            <Typography variant="body2" color="error">
+              {formik.errors.identificationNumber}
+            </Typography>
           ) : null}
-        </div>
-        <div>
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
+          <TextField
+            margin="normal"
+            required
+            fullWidth
             name="password"
+            label="Password"
+            id="password"
+            autoComplete="current-password"
+            type="password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p style={{ color: 'red' }}>{formik.errors.password}</p>
+            <Typography variant="body2" color="error">
+              {formik.errors.password}
+            </Typography>
           ) : null}
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-    </div>
+          {error && (
+            <Typography variant="body2" color="error">
+              {error}
+            </Typography>
+          )}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Iniciar Sesión
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <MuiLink href="#" underline="hover">
+                <Typography variant="body2" color="primary">
+                  Forgot your password?
+                </Typography>
+              </MuiLink>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
