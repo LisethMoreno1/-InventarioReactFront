@@ -7,7 +7,6 @@ import AppRouter from "./routes/AppRouter";
 const App: React.FC = () => {
   return (
     <Router>
-
           <SideBar />
           <Routes>
             {AppRouter.map((route, index) => (
@@ -22,7 +21,6 @@ const App: React.FC = () => {
               </Route>
             ))}
           </Routes>
-    z
     </Router>
   );
 };
