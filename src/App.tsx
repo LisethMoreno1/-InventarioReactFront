@@ -1,15 +1,19 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import SideBar from "./pages/SideBar";
-import AppRouter from "./routes/AppRouter";
 import { AuthProvider } from "./Auth/(Auth)/AuthContext/AuthContext";
+import SignInPage from "./pages/Login/SignInPage";
+import AppRouter from "./routes/AppRouter";
+import { ProtectedLayout } from "./components/Layout/ProtectedLayout"; // Asegúrate de que esto esté antes de su uso
+import ResetPasswordPage from "./pages/Login/resetPasswordPage";
 
 const App: React.FC = () => {
   return (
-    <AuthProvider> 
-    <Router>
-          <SideBar />
-          <Routes>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<SignInPage />} />
+          <Route path="/ResetPassword" element={<ResetPasswordPage />} />
+          <Route element={<ProtectedLayout />}>
             {AppRouter.map((route, index) => (
               <Route key={index} path={route.path} element={route.element}>
                 {route.children?.map((childRoute, childIndex) => (
@@ -21,8 +25,9 @@ const App: React.FC = () => {
                 ))}
               </Route>
             ))}
-          </Routes>
-    </Router>
+          </Route>
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 };

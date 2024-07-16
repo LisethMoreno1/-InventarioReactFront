@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import React from 'react';
-import Sidebar from '../components/Layout/Sidebar';
+import Sidebar from '../../components/Layout/Sidebar';
 
 const SideBar: React.FC = () => {
   return (

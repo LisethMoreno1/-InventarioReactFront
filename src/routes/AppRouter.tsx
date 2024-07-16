@@ -1,19 +1,16 @@
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import React from "react";
-import LoginPage from "../pages/LoginPage";
-import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
-import RegistrePage from "../pages/registre";
-import { RouteType } from "./route";
+import { ProtectedLayout } from '../components/Layout/ProtectedLayout'; // Asegúrate de que esto esté antes de su uso
 import UserList from '../components/users/list/UserList';
+import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
+import RegistrePage from '../pages/Users/registre';
+import { RouteType } from "./route";
 
 const AppRouter: RouteType[] = [
   {
     path: "/",
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
+    element: <ProtectedLayout />,
   },
   {
     path: "/registre",
@@ -29,7 +26,8 @@ const AppRouter: RouteType[] = [
           displayText: "Registro de Usuario",
           icon: <InboxIcon />
         }
-      }, {
+      },
+      {
         path: "Lista de Usuario",
         element: <UserList />,
         sidebarProps: {
@@ -38,7 +36,6 @@ const AppRouter: RouteType[] = [
         }
       }
     ],
-
   },
   {
     path: "/Mantenimiento",

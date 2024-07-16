@@ -1,5 +1,4 @@
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
-import React from 'react';
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   palette: {

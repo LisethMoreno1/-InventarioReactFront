@@ -3,33 +3,33 @@ import {
   Button,
   Container,
   CssBaseline,
-  Grid,
-  Link as MuiLink,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { postLogin } from "../../services/api/loginService/loginService";
-import { loginSchema } from "../../types/Login/loginSchemas";
+import { postResetPassword } from "../../../services/api/loginService/resetPaswordService";
+import { resetPaswordSchema } from "../../../types/Login/resetPaswordSchema";
 
-const Login: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const formik = useFormik({
     initialValues: {
       identificationNumber: "",
-      password: "",
     },
-    validationSchema: loginSchema,
+    validationSchema: resetPaswordSchema,
     onSubmit: async (values) => {
       setError(null);
+      setSuccess(null);
       try {
-        const response = await postLogin(values);
-        console.log("Login successful:", response);
+        const response = await postResetPassword(values);
+        setSuccess("Correo de recuperación enviado con éxito.");
+        console.log("postResetPassword successful:", response);
       } catch (error) {
-        console.error("Login failed:", error);
-        setError("Nombre de usuario o contraseña inválidos");
+        console.error("Error en la recuperación de contraseña:", error);
+        setError("Numero de Identificación de usuario inválidos");
       }
     },
   });
@@ -46,7 +46,7 @@ const Login: React.FC = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Accede a tu cuenta
+          Recupera tu contraseña
         </Typography>
         <Box
           component="form"
@@ -64,60 +64,40 @@ const Login: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            label="Identification Number"
+            label="Número de identificación"
             autoComplete="identificationNumber"
             autoFocus
           />
           {formik.touched.identificationNumber &&
-          formik.errors.identificationNumber ? (
+            formik.errors.identificationNumber ? (
             <Typography variant="body2" color="error">
               {formik.errors.identificationNumber}
             </Typography>
           ) : null}
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            id="password"
-            autoComplete="current-password"
-            type="password"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <Typography variant="body2" color="error">
-              {formik.errors.password}
-            </Typography>
-          ) : null}
+
           {error && (
             <Typography variant="body2" color="error">
               {error}
             </Typography>
           )}
+          {success && (
+            <Typography variant="body2" color="success">
+              {success}
+            </Typography>
+          )}
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Iniciar Sesión
+            Recuperar contraseña
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <MuiLink href="#" underline="hover">
-                <Typography variant="body2" color="primary">
-                  Forgot your password?
-                </Typography>
-              </MuiLink>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Container>
   );
 };
 
-export default Login;
+export default ResetPassword;

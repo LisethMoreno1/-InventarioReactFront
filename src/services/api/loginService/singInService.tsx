@@ -1,4 +1,4 @@
-import { LoginData, LoginResponse } from "../../../interfaces/Login/Login";
+import { LoginData, LoginResponse } from "../../../interfaces/Login/SingIn";
 import config from '../../../config/config.json';
 
 
