@@ -157,8 +157,6 @@ const Sidebar: React.FC = () => {
                     ))}
                 </List>
             </Drawer>
-
-            {/* Contenido principal */}
             <Grid item xs={12} md={9}>
                 <Box
                     component="main"
@@ -172,7 +170,7 @@ const Sidebar: React.FC = () => {
                     }}
                 >
                     <Toolbar />
-                    {/*   <DashboardCharts /> */}
+
                 </Box>
             </Grid>
         </Grid>
