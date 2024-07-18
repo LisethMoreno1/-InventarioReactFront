@@ -1,4 +1,4 @@
-export interface Roles {
+export interface RolesInter {
     id: number
     typeOfRole: string
 

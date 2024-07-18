@@ -6,56 +6,61 @@ import TextField from '@mui/material/TextField';
 import { GridColDef } from '@mui/x-data-grid';
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
-import { GenreInter } from '../../../interfaces/typeOfGenders/typeOfGenders';
-import { deleteTypeOfGenders, getTypeOfGenders, postTypeOfGenders } from '../../../services/api/GenreService/genreService';
-import useTypeOfGenderStore from '../../../stores/TypeOfGenderStore';
-import { typeOfGendersSchema } from '../../../types/Mantenimiento/typeOfGenders/typeOfGenders';
+import { RolesInter } from '../../../interfaces/Rol/rol';
+import { deleteRoles, getRoles, postRoles } from '../../../services/api/RolesService/rolesService';
+import useRolesStore from '../../../stores/RolesStore';
+import { rolesSchema } from '../../../types/Mantenimiento/roles/roles';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
 
-const TypeOfGender: React.FC = () => {
-    const { genreInter, setGenreInter } = useTypeOfGenderStore((state) => ({
-        genreInter: state.genreInter,
-        setGenreInter: state.setGenreInter,
+const Roles: React.FC = () => {
+    const { roles, setRoles } = useRolesStore((state) => ({
+        roles: state.roles,
+        setRoles: state.setRoles,
     }));
+
     const formik = useFormik({
         initialValues: {
-            genre: '',
+            typeOfRole: '',
         },
-        validationSchema: typeOfGendersSchema,
+        validationSchema: rolesSchema,
         onSubmit: async (values, { resetForm }) => {
             try {
-                const typeOfGendersRequest: GenreInter = {
+                const rolesRequest: RolesInter = {
                     id: 0,
-                    genre: values.genre,
+                    typeOfRole: values.typeOfRole,
                 };
 
-                const response = await postTypeOfGenders(typeOfGendersRequest);
-                if (!response.ok)
-                    showSuccessAlert('Tipo de género registrado exitosamente');
+                const response = await postRoles(rolesRequest);
+                if (response.ok) {
+                    showSuccessAlert('Tipo de rol registrado exitosamente');
+                    const updatedRoles = await getRoles();
+                    setRoles(updatedRoles);
+                } else {
+                    showErrorAlert('Error al registrar el tipo de rol');
+                }
                 resetForm();
 
             } catch (error) {
-                showErrorAlert('Ya hiciste un tipo de género con ese nombre');
+                showErrorAlert('Ya hiciste un tipo de rol con ese nombre');
             }
         },
     });
 
     useEffect(() => {
-        const fetchTypeOfGender = async () => {
+        const fetchRoles = async () => {
             try {
-                const typeOfGenderData = await getTypeOfGenders();
-                setGenreInter(typeOfGenderData);
+                const rolesData = await getRoles();
+                setRoles(rolesData);
             } catch (error) {
-                console.error('Error al obtener tipos de identificación:', error);
+                console.error('Error al obtener tipos de rol:', error);
             }
         };
-        fetchTypeOfGender();
-    }, [setGenreInter]);
+        fetchRoles();
+    }, [ setRoles]);
 
-
-    const columns: GridColDef<GenreInter>[] = [
-        { field: 'genre', headerName: 'genre', width: 350 },
+    const columns: GridColDef<RolesInter>[] = [
+        { field: 'typeOfRole', headerName: 'Tipo de Rol', width: 350 },
         {
             field: 'Acciones',
             headerName: 'Acciones',
@@ -98,23 +103,21 @@ const TypeOfGender: React.FC = () => {
         },
     ];
 
-    const handleEditClick = (TypeOfGender: GenreInter) => {
-        alert(`Editar tipo de genreInter: ${TypeOfGender.genre}`);
+    const handleEditClick = (role: RolesInter) => {
+        alert(`Editar tipo de rol: ${role.typeOfRole}`);
     };
 
-    const handleDeleteClick = async (TypeOfGender: GenreInter) => {
+    const handleDeleteClick = async (role: RolesInter) => {
         try {
-            await deleteTypeOfGenders(TypeOfGender);
-            const updatedTypeOfGenders = await getTypeOfGenders();
-            showSuccessAlert(`Tipo genero ${TypeOfGender.genre} eliminado exitosamente`);
-            setGenreInter(updatedTypeOfGenders);
+            await deleteRoles(role);
+            const updatedRoles = await getRoles();
+            showSuccessAlert(`Tipo de rol ${role.typeOfRole} eliminado exitosamente`);
+            setRoles(updatedRoles);
         } catch (error) {
-            console.error('Hubo un problema al eliminar el tipo de género:', error);
-            showErrorAlert(`Hubo un problema al eliminar el tipo de género ${TypeOfGender.genre}`);
+            console.error('Hubo un problema al eliminar el tipo de rol:', error);
+            showErrorAlert(`Hubo un problema al eliminar el tipo de rol ${role.typeOfRole}`);
         }
-    }
-
-
+    };
 
     return (
         <Container maxWidth="lg">
@@ -128,21 +131,21 @@ const TypeOfGender: React.FC = () => {
                 }}
             >
                 <Typography variant="h4" component="h2" gutterBottom>
-                 Creación de Generos
+                  Creación de Rol
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6} md={3}>
                             <TextField
                                 fullWidth
-                                value={formik.values.genre}
+                                value={formik.values.typeOfRole}
                                 onChange={formik.handleChange}
                                 margin="normal"
-                                id="genre"
-                                name="genre"
-                                label="Nombre del Género"
-                                error={formik.touched.genre && Boolean(formik.errors.genre)}
-                                helperText={formik.touched.genre && formik.errors.genre}
+                                id="typeOfRole"
+                                name="typeOfRole"
+                                label="Nombre del Rol"
+                                error={formik.touched.typeOfRole && Boolean(formik.errors.typeOfRole)}
+                                helperText={formik.touched.typeOfRole && formik.errors.typeOfRole}
                             />
                         </Grid>
 
@@ -156,10 +159,10 @@ const TypeOfGender: React.FC = () => {
             </Box>
 
             <Box mt={5}>
-                <DataGridComponent rows={genreInter} columns={columns} />
+                <DataGridComponent rows={roles} columns={columns} />
             </Box>
         </Container>
     );
 };
 
-export default TypeOfGender;
+export default Roles;

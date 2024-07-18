@@ -1,9 +1,6 @@
-/* import config from '../../../config/config.json';
- */
+
 import { resetPasswordData, ResetPasswordResponse } from "../../../interfaces/Login/resetPassword";
 
-/* const authUrl = config.baseUrl;
- */
 
 /* METODO POST */
 export const postResetPassword = async (data: resetPasswordData): Promise<ResetPasswordResponse> => {

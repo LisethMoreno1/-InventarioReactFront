@@ -1,4 +1,3 @@
-// stores/TypeOfIdentificationStore.ts
 import create from 'zustand';
 import { typeOfIdentification } from '../interfaces/typeOfIdentification/typeOfIdentification';
 

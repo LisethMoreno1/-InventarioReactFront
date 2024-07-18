@@ -9,18 +9,16 @@ import React, { useEffect } from 'react';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
 import { typeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentification';
 import { NewTypeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentificationCreate';
-import { deleteTypeOfIdentifications, getTypeOfIdentifications, postTypeOfIdentifications } from '../../../services/api/typeOfIdentificationService/typeOfIdentificationService';
+import { deleteTypeOfIdentifications, getTypeOfIdentifications, postTypeOfIdentifications } from '../../../services/api/TypeOfIdentificationService/typeOfIdentificationService';
 import typeOfIdentificationStore from '../../../stores/TypeOfIdentificationStore';
 import { typeOfIdentificationsSchema } from '../../../types/Mantenimiento/typeOfIdentification/typeOfIdentification';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
-
 
 const TypeOfIdentification: React.FC = () => {
   const { typeOfIdentification, setTypeOfIdentifications } = typeOfIdentificationStore((state) => ({
     typeOfIdentification: state.typeOfIdentification,
     setTypeOfIdentifications: state.setTypeOfIdentifications,
   }));
-
 
   const formik = useFormik({
     initialValues: {
@@ -37,11 +35,16 @@ const TypeOfIdentification: React.FC = () => {
         };
 
         const response = await postTypeOfIdentifications(typeOfIdentificationRequest);
-        if (!response.ok)
+        if (response.ok) {
           showSuccessAlert('Tipo de identificación registrado exitosamente');
-        resetForm();
+          resetForm();
+          const updatedTypeOfIdentifications = await getTypeOfIdentifications();
+          setTypeOfIdentifications(updatedTypeOfIdentifications);
+        } else {
+          showErrorAlert('Ya hiciste un Tipo de identificación con ese nombre');
+        }
       } catch (error) {
-        showErrorAlert('Ya hiciste un Tipo de identificación con ese nombre  ');
+        showErrorAlert('Error al registrar el tipo de identificación');
       }
     },
   });
@@ -57,9 +60,7 @@ const TypeOfIdentification: React.FC = () => {
     };
 
     fetchTypeOfIdentifications();
-  }, []);
-
-
+  }, [setTypeOfIdentifications]);
 
   const columns: GridColDef<typeOfIdentification>[] = [
     { field: 'name', headerName: 'Nombre', width: 350 },
@@ -110,7 +111,6 @@ const TypeOfIdentification: React.FC = () => {
     alert(`Editar tipo de identificación: ${typeOfIdentification.name}`);
   };
 
-
   const handleDeleteClick = async (typeOfIdentification: typeOfIdentification) => {
     try {
       await deleteTypeOfIdentifications(typeOfIdentification);
@@ -135,7 +135,7 @@ const TypeOfIdentification: React.FC = () => {
         }}
       >
         <Typography variant="h4" component="h2" gutterBottom>
-          Registrar Tipo de Identificación
+        Creación Tipo de Identificación
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>

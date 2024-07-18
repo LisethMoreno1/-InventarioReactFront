@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUsers } from '../../../services/api/userService/userService';
+import { getUsers } from '../../../services/api/UserService/userService';
 import { GridColDef } from '@mui/x-data-grid';
 import { Box, Button, Tooltip, Typography } from '@mui/material';
 import { User } from '../../../interfaces/Users/User';

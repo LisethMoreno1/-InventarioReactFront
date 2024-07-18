@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { postResetPassword } from "../../../services/api/loginService/resetPaswordService";
+import { postResetPassword } from "../../../services/api/LoginService/resetPaswordService";
 import { resetPaswordSchema } from "../../../types/Login/resetPaswordSchema";
 
 const ResetPassword: React.FC = () => {
