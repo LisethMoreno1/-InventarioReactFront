@@ -2,10 +2,10 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import React from "react";
 import { ProtectedLayout } from '../components/Layout/ProtectedLayout'; // Asegúrate de que esto esté antes de su uso
-import UserList from '../components/users/list/UserList';
 import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
 import RegistrePage from '../pages/Users/registre';
 import { RouteType } from "./route";
+import UserList from '../components/users/ListOfUsers/ListUsers';
 
 const AppRouter: RouteType[] = [
   {
