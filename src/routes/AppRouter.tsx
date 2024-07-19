@@ -9,6 +9,7 @@ import UserList from '../components/users/ListOfUsers/ListUsers';
 import TypeOfGenderPage from '../pages/Mantenimiento/typeOfGender';
 import RolesPage from '../pages/Mantenimiento/roles';
 import CountryPage from '../pages/Mantenimiento/country';
+import CustomersPages from '../pages/Customers/customers';
 
 const AppRouter: RouteType[] = [
   {
@@ -27,6 +28,24 @@ const AppRouter: RouteType[] = [
         element: <RegistrePage />,
         sidebarProps: {
           displayText: "Registro de Usuario",
+          icon: <InboxIcon />
+        }
+      },
+
+    ],
+  },
+  {
+    path: "/coustumer",
+    sidebarProps: {
+      displayText: "Cliente",
+      icon: <PersonOutlineIcon />
+    },
+    children: [
+      {
+        path: "Registro de Cliente",
+        element: <CustomersPages />,
+        sidebarProps: {
+          displayText: "Registro de Cliente",
           icon: <InboxIcon />
         }
       },

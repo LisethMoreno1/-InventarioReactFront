@@ -1,8 +1,6 @@
 import * as Yup from "yup";
 
 export const registreSchema = Yup.object({
-
-
     typeOfIdentification: Yup.string().required("Tipo de Identificación es obligatoria"),
     identificationNumber: Yup.number().min(6, "El número de identificación debe tener al menos 6 carateres").required("El número de identificación es obligatorio"),
     firstName: Yup.string().required("El nombre de usuario es obligatorio").matches(/^[^\d]*$/, 'El primer nombre no puede contener números'),
