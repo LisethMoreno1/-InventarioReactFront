@@ -29,7 +29,6 @@ const CustomerForm: React.FC = () => {
             try {
                 const order: Orden = {
                     id: 0, // Proporciona un valor predeterminado para id
-                    price: parseFloat(values.orderNumber || '0'), // Convertir a número, asignar '0' si está vacío
                     entryDate: values.orderDate ? new Date(values.orderDate) : new Date(), // Usar la fecha actual si está vacío
                     customerIdentificationNumber: values.identificationNumber, // Asignar identificación del cliente
                 };
@@ -49,14 +48,12 @@ const CustomerForm: React.FC = () => {
                 const response = await postCustomers(customersRequest);
 
                 if (!response.ok) {
-                    console.error('Error en la respuesta', response); // Registro en consola para depuración
                     throw new Error(`Error: ${response.statusText}`);
                 }
 
                 showSuccessAlert('Cliente registrado exitosamente');
                 resetForm(); // Limpiar el formulario
             } catch (error) {
-                // Mostrar mensaje de error en caso de excepción
                 console.error('Error capturado', error); // Registro en consola para depuración
                 showErrorAlert(`Error: ${error}`);
             }

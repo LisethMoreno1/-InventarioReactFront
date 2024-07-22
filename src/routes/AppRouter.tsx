@@ -10,6 +10,8 @@ import TypeOfGenderPage from '../pages/Mantenimiento/typeOfGender';
 import RolesPage from '../pages/Mantenimiento/roles';
 import CountryPage from '../pages/Mantenimiento/country';
 import CustomersPages from '../pages/Customers/customers';
+import CategoryPages from '../pages/Category/Category';
+import SubCategoryPages from '../pages/Category/subCategory';
 
 const AppRouter: RouteType[] = [
   {
@@ -31,6 +33,14 @@ const AppRouter: RouteType[] = [
           icon: <InboxIcon />
         }
       },
+      {
+        path: "Lista de Usuario",
+        element: <UserList />,
+        sidebarProps: {
+          displayText: "Lista de Usuario",
+          icon: <InboxIcon />
+        }
+      }
 
     ],
   },
@@ -46,14 +56,6 @@ const AppRouter: RouteType[] = [
         element: <CustomersPages />,
         sidebarProps: {
           displayText: "Registro de Cliente",
-          icon: <InboxIcon />
-        }
-      },
-      {
-        path: "Lista de Usuario",
-        element: <UserList />,
-        sidebarProps: {
-          displayText: "Lista de Usuario",
           icon: <InboxIcon />
         }
       }
@@ -97,7 +99,23 @@ const AppRouter: RouteType[] = [
           displayText: "Creación de Cuidad y Departamento",
           icon: <InboxIcon />
         }
+      }, {
+        path: "Categoria",
+        element: <CategoryPages />,
+        sidebarProps: {
+          displayText: "Creación de categorias",
+          icon: <InboxIcon />
+        }
+      },
+      {
+        path: "Sub - Categoria",
+        element: <SubCategoryPages />,
+        sidebarProps: {
+          displayText: "Sub - Categoria",
+          icon: <InboxIcon />
+        }
       }
+
     ],
   }
 ];

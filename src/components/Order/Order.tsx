@@ -1,6 +1,7 @@
 import { Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
+import OrderIconWithModal from '../componentesGenerales/Modal/IconWithModal';
 
 const OrderForm: React.FC<{ formik: any }> = ({ formik }) => {
     return (
@@ -10,7 +11,7 @@ const OrderForm: React.FC<{ formik: any }> = ({ formik }) => {
                 padding: 4,
                 borderRadius: 2,
                 boxShadow: 5,
-                width: '90%', 
+                width: '90%',
                 mt: 3
             }}
         >
@@ -23,30 +24,12 @@ const OrderForm: React.FC<{ formik: any }> = ({ formik }) => {
                     <TextField
                         fullWidth
                         margin="normal"
-                        id="orderNumber"
-                        name="orderNumber"
-                        label="Valor de la Orden"
-                        type="number" 
-                        value={formik.values.orderNumber}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        helperText={
-                            formik.touched.orderNumber && formik.errors.orderNumber ? formik.errors.orderNumber : ''
-                        }
-                        error={formik.touched.orderNumber && Boolean(formik.errors.orderNumber)}
-                    />
-                </Grid>
-
-                <Grid item xs={12} sm={6} md={3}>
-                    <TextField
-                        fullWidth
-                        margin="normal"
                         id="orderDate"
                         name="orderDate"
-                        label="Fecha de Orden (opcional)"
+                        label="Fecha de Orden"
                         type="date"
                         InputLabelProps={{ shrink: true }}
-                        value={formik.values.orderDate || ''} 
+                        value={formik.values.orderDate || ''}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         helperText={
@@ -55,9 +38,15 @@ const OrderForm: React.FC<{ formik: any }> = ({ formik }) => {
                         error={formik.touched.orderDate && Boolean(formik.errors.orderDate)}
                     />
                 </Grid>
+
+                <Grid item xs={12} sm={6} md={3}>
+
+                    <OrderIconWithModal />
+                </Grid>
             </Grid>
         </Box>
     );
 };
 
 export { OrderForm };
+

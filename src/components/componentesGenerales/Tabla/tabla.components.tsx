@@ -22,7 +22,7 @@ const DataGridComponent = <T extends GridValidRowModel>({ rows, columns }: DataG
                 flexDirection: 'column'
             }}>
                 <Typography variant="h4" component="h2" gutterBottom>
-                    Listado de Usuarios
+                 {Typography.name}
                 </Typography>
                 <Box sx={{ flexGrow: 1 }}>
                     <DataGrid
