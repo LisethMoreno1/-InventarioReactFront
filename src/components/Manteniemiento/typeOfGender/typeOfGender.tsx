@@ -156,7 +156,10 @@ const TypeOfGender: React.FC = () => {
             </Box>
 
             <Box mt={5}>
-                <DataGridComponent rows={genreInter} columns={columns} />
+          
+                <DataGridComponent  rows={genreInter} columns={columns} >
+                    Lista de Generos
+                </DataGridComponent>
             </Box>
         </Container>
     );

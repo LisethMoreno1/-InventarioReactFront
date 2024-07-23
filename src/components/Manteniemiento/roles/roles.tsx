@@ -57,7 +57,7 @@ const Roles: React.FC = () => {
             }
         };
         fetchRoles();
-    }, [ setRoles]);
+    }, [setRoles]);
 
     const columns: GridColDef<RolesInter>[] = [
         { field: 'typeOfRole', headerName: 'Tipo de Rol', width: 350 },
@@ -131,7 +131,7 @@ const Roles: React.FC = () => {
                 }}
             >
                 <Typography variant="h4" component="h2" gutterBottom>
-                  Creación de Rol
+                    Creación de Rol
                 </Typography>
                 <form onSubmit={formik.handleSubmit}>
                     <Grid container spacing={2}>
@@ -159,9 +159,13 @@ const Roles: React.FC = () => {
             </Box>
 
             <Box mt={5}>
-                <DataGridComponent rows={roles} columns={columns} />
+
+
+                <DataGridComponent rows={roles} columns={columns}>
+                    Lista de roles
+                </DataGridComponent>
             </Box>
-        </Container>
+        </Container >
     );
 };
 

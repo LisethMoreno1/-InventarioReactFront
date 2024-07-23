@@ -12,6 +12,7 @@ import CountryPage from '../pages/Mantenimiento/country';
 import CustomersPages from '../pages/Customers/customers';
 import CategoryPages from '../pages/Category/Category';
 import SubCategoryPages from '../pages/Category/subCategory';
+import OrderDetailsPage from '../pages/Orden/OrderDetails';
 
 const AppRouter: RouteType[] = [
   {
@@ -56,6 +57,14 @@ const AppRouter: RouteType[] = [
         element: <CustomersPages />,
         sidebarProps: {
           displayText: "Registro de Cliente",
+          icon: <InboxIcon />
+        }
+      },
+      {
+        path: "Detalle de Orden",
+        element: <OrderDetailsPage />,
+        sidebarProps: {
+          displayText: "Detalle de Orden",
           icon: <InboxIcon />
         }
       }

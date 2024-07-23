@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box, Button, Tooltip, Typography } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { Box, Button, Tooltip } from '@mui/material';
+import { GridColDef } from '@mui/x-data-grid';
+import React, { useEffect } from 'react';
 import useCategoryStore from '../../../stores/Categorys';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
 
@@ -17,12 +17,12 @@ const CategoryList: React.FC = () => {
     }, [fetchCategoriesAndSubCategories]);
 
     const handleEditClick = (row: any) => {
-        // Lógica para editar
+       
         console.log("Edit", row);
     };
 
     const handleDeleteClick = (row: any) => {
-        // Lógica para eliminar
+       
         console.log("Delete", row);
     };
 
@@ -74,10 +74,10 @@ const CategoryList: React.FC = () => {
 
     return (
         <Box sx={{ padding: 2 }}>
-            <Typography variant="h6" gutterBottom>
+
+            <DataGridComponent rows={categories} columns={columns}>
                 Lista de Categorías
-            </Typography>
-            <DataGridComponent rows={categories} columns={columns} />
+            </DataGridComponent>
 
         </Box>
     );

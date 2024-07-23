@@ -6,9 +6,10 @@ import { Container, Typography } from '@mui/material';
 interface DataGridProps<T extends GridValidRowModel> {
     rows: T[];
     columns: GridColDef<T>[];
+    children?: React.ReactNode;
 }
 
-const DataGridComponent = <T extends GridValidRowModel>({ rows, columns }: DataGridProps<T>) => {
+const DataGridComponent = <T extends GridValidRowModel>({ rows, columns, children }: DataGridProps<T>) => {
     return (
         <Container maxWidth="lg">
             <Box sx={{
@@ -21,9 +22,14 @@ const DataGridComponent = <T extends GridValidRowModel>({ rows, columns }: DataG
                 display: 'flex',
                 flexDirection: 'column'
             }}>
-                <Typography variant="h4" component="h2" gutterBottom>
-                 {Typography.name}
-                </Typography>
+                <Box sx={{ paddingBottom: 2 }}>
+      
+                    {children && (
+                        <Typography variant="h5" component="h2" gutterBottom>
+                            {children}
+                        </Typography>
+                    )}
+                </Box>
                 <Box sx={{ flexGrow: 1 }}>
                     <DataGrid
                         rows={rows}
@@ -39,7 +45,7 @@ const DataGridComponent = <T extends GridValidRowModel>({ rows, columns }: DataG
                         checkboxSelection
                         disableRowSelectionOnClick
                         sx={{
-                            height: '80%',
+                            height: '100%',
                             width: '100%',
                             '& .MuiDataGrid-main': {
                                 height: '100%',

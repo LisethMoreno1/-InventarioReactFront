@@ -135,7 +135,7 @@ const TypeOfIdentification: React.FC = () => {
         }}
       >
         <Typography variant="h4" component="h2" gutterBottom>
-        Creación Tipo de Identificación
+          Creación Tipo de Identificación
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
@@ -177,7 +177,11 @@ const TypeOfIdentification: React.FC = () => {
       </Box>
 
       <Box mt={5}>
-        <DataGridComponent rows={typeOfIdentification} columns={columns} />
+
+
+        <DataGridComponent rows={typeOfIdentification} columns={columns}>
+          Lista de Tipo de Identificaciones
+        </DataGridComponent>
       </Box>
     </Container>
   );

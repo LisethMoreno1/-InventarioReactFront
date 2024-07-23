@@ -33,7 +33,6 @@ const CreateSubCategory: React.FC = () => {
                 showSuccessAlert('Subcategoría creada exitosamente');
                 resetForm();
             } catch (error) {
-                console.error('Error:', error);  // Añade un console.error para ver el error específico
                 showErrorAlert('Error al crear subcategoría');
             }
         },

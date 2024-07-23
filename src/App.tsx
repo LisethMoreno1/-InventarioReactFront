@@ -5,12 +5,14 @@ import SignInPage from "./pages/Login/SignInPage";
 import AppRouter from "./routes/AppRouter";
 import { ProtectedLayout } from "./components/Layout/ProtectedLayout"; // Asegúrate de que esto esté antes de su uso
 import ResetPasswordPage from "./pages/Login/resetPasswordPage";
+import ErrorPage from "./errors/not-found/ErrorPage";
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="*" element={<ErrorPage />} />
           <Route path="/login" element={<SignInPage />} />
           <Route path="/ResetPassword" element={<ResetPasswordPage />} />
           <Route element={<ProtectedLayout />}>

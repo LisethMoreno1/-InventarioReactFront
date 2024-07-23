@@ -45,7 +45,7 @@ const Country: React.FC = () => {
 
                 const departmentResponse = await postDepartments(departmentsRequest);
 
-                const departmentId = departmentResponse.id; 
+                const departmentId = departmentResponse.id;
 
                 // Petición para registrar ciudad
                 const citiesRequest = {
@@ -99,7 +99,7 @@ const Country: React.FC = () => {
         };
 
         fetchCountry();
-    }, [setCountry ]);
+    }, [setCountry]);
 
     const columns: GridColDef[] = [
         { field: 'Department', headerName: 'Departamento', width: 250 },
@@ -141,13 +141,8 @@ const Country: React.FC = () => {
 
     const handleDeleteClick = async (row: CombinedData) => {
         try {
-            // Implementar lógica de eliminación aquí
-            // await deleteTypeOfIdentifications(row);
-            // const updatedData = await getTypeOfIdentifications();
-            // showSuccessAlert(`Registro eliminado exitosamente`);
-            // setTypeOfIdentifications(updatedData);
+
         } catch (error) {
-            console.error('Hubo un problema al eliminar:', error);
             showErrorAlert('Error al eliminar el registro');
         }
     };
@@ -229,7 +224,9 @@ const Country: React.FC = () => {
                 </form>
             </Box>
             <Box mt={5}>
-                <DataGridComponent rows={combinedData} columns={columns} />
+                <DataGridComponent rows={combinedData} columns={columns} >
+                    Lista de Cuidad y Departamento
+                </DataGridComponent>
             </Box>
         </Container>
     );

@@ -5,102 +5,88 @@ import { Grid, TextField } from '@mui/material';
 const FormInputsOrden: React.FC = () => {
     return (
         <Grid container spacing={2}>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={3}>
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input1"
-                    name="input1"
-                    label="Input 1"
+                    id="brand"
+                    name="brand"
+                    label="Marca"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input2"
-                    name="input2"
-                    label="Input 2"
+                    id="yearOfManufacture"
+                    name="yearOfManufacture"
+                    label="Año de fabricación"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input3"
-                    name="input3"
-                    label="Input 3"
+                    id="plateNumber"
+                    name="plateNumber"
+                    label="Número de placa"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="input4"
-                    name="input4"
-                    label="Input 4"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                />
+
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={3}>
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input5"
-                    name="input5"
-                    label="Input 5"
+                    id="categories"
+                    name="categories"
+                    label="Categorías"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input6"
-                    name="input6"
-                    label="Input 6"
+                    id="subcategories"
+                    name="subcategories"
+                    label="Subcategoría"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input7"
-                    name="input7"
-                    label="Input 7"
+                    id="orderStatusId"
+                    name="orderStatusId"
+                    label="Estado del pedido"
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
+
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
                 <TextField
                     fullWidth
                     margin="normal"
-                    id="input8"
-                    name="input8"
-                    label="Input 8"
+                    id="descriptionOfProblem"
+                    name="descriptionOfProblem"
+                    label="Descripción del problema"
+                    type="text"
+                    InputLabelProps={{ shrink: true }}
+                />
+
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    id="dateOfEntry"
+                    name="dateOfEntry"
+                    label="Fecha de entrada"
                     type="date"
                     InputLabelProps={{ shrink: true }}
                 />
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="input9"
-                    name="input9"
-                    label="Input 9"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="input10"
-                    name="input10"
-                    label="Input 10"
-                    type="date"
-                    InputLabelProps={{ shrink: true }}
-                />
-            </Grid>
+
         </Grid>
     );
 };

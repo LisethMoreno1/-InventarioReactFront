@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { getUsers } from '../../../services/api/UserService/userService';
-import { GridColDef } from '@mui/x-data-grid';
-import { Box, Button, Tooltip, Typography } from '@mui/material';
-import { User } from '../../../interfaces/Users/User';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import DeleteIcon from '@mui/icons-material/Delete';
-import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
+import { Box, Button, Tooltip } from '@mui/material';
+import { GridColDef } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react';
+import { User } from '../../../interfaces/Users/User';
+import { getUsers } from '../../../services/api/UserService/userService';
 import useStore from '../../../stores/UserStore';
+import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
 
 
 
@@ -61,7 +61,7 @@ const UserList: React.FC = () => {
       field: 'Acciones',
       headerName: 'Acciones',
       width: 200,
-   
+
       renderCell: (params) => (
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: 1 }}>
           <Tooltip title="Editar">
@@ -138,7 +138,11 @@ const UserList: React.FC = () => {
   return (
     <Box>
 
-      <DataGridComponent rows={users} columns={columns} />
+
+
+      <DataGridComponent rows={users} columns={columns} >
+        Lista de Usuarios
+      </DataGridComponent>
     </Box>
   );
 };
