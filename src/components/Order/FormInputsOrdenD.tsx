@@ -1,8 +1,49 @@
-
-import React from 'react';
-import { Grid, TextField } from '@mui/material';
+import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { SubCategory } from '../../interfaces/SubCategory/subCategory';
+import useCategorysStore from '../../stores/Categorys';
 
 const FormInputsOrden: React.FC = () => {
+    const { categories, subcategories, fetchCategoriesAndSubCategories } = useCategorysStore((state) => ({
+        categories: state.categories,
+        subcategories: state.subcategories,
+        fetchCategoriesAndSubCategories: state.fetchCategoriesAndSubCategories,
+    }));
+
+    const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
+    const [filteredSubcategories, setFilteredSubcategories] = useState<SubCategory[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await fetchCategoriesAndSubCategories();
+                console.log('Categorías:', categories);
+                console.log('Subcategorías:', subcategories);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, [fetchCategoriesAndSubCategories]);
+
+
+    useEffect(() => {
+        console.log('Categoría seleccionada:', selectedCategory);
+        console.log('Subcategorías disponibles:', subcategories);
+
+        if (selectedCategory !== '') {
+            const filtered = subcategories.filter(subcategory =>
+                subcategory.categoryId === selectedCategory
+            );
+            console.log('Subcategorías filtradas:', filtered);
+            setFilteredSubcategories(filtered);
+        } else {
+            setFilteredSubcategories(subcategories);
+        }
+    }, [selectedCategory, subcategories]);
+
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={3}>
@@ -33,27 +74,44 @@ const FormInputsOrden: React.FC = () => {
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
-
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="categories"
-                    name="categories"
-                    label="Categorías"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="subcategories"
-                    name="subcategories"
-                    label="Subcategoría"
-                    type="text"
-                    InputLabelProps={{ shrink: true }}
-                />
+                <FormControl fullWidth margin="normal">
+                    <InputLabel id="category-label">Categoría</InputLabel>
+                    <Select
+                        labelId="category-label"
+                        id="categoryId"
+                        name="categoryId"
+                        value={selectedCategory}
+                        onChange={(e) => {
+                            const value = Number(e.target.value);
+                            console.log('Categoría seleccionada:', value);
+                            setSelectedCategory(value);
+                        }}
+                        label="Categoría"
+                    >
+                        {categories.map((category) => (
+                            <MenuItem key={category.id} value={category.id}>
+                                {category.categoryName}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <FormControl fullWidth margin="normal">
+                    <InputLabel id="subcategory-label">Sub-Categoría</InputLabel>
+                    <Select
+                        labelId="subcategory-label"
+                        id="subcategoryId"
+                        name="subcategoryId"
+                        label="Sub-Categoría"
+                    >
+                        {filteredSubcategories.map((subcategory) => (
+                            <MenuItem key={subcategory.id} value={subcategory.id}>
+                                {subcategory.subcategoryName}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
                 <TextField
                     fullWidth
                     margin="normal"
@@ -63,7 +121,6 @@ const FormInputsOrden: React.FC = () => {
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
-
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
                 <TextField
@@ -75,7 +132,6 @@ const FormInputsOrden: React.FC = () => {
                     type="text"
                     InputLabelProps={{ shrink: true }}
                 />
-
                 <TextField
                     fullWidth
                     margin="normal"
@@ -86,7 +142,6 @@ const FormInputsOrden: React.FC = () => {
                     InputLabelProps={{ shrink: true }}
                 />
             </Grid>
-
         </Grid>
     );
 };

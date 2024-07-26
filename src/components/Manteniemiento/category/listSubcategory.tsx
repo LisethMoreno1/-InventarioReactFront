@@ -25,10 +25,8 @@ const SubCategoryList: React.FC = () => {
     };
 
     const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 150 },
-        { field: 'subcategoryName', headerName: 'Subcategoría', width: 350 },
-        { field: 'categoryName', headerName: 'Categoría', width: 350 },
-        { field: 'description', headerName: 'Descripción', width: 350 },
+        { field: 'subcategoryName', headerName: 'Sub-Categoría', width: 350 },
+        { field: 'description', headerName: 'Categoria', width: 350 },
         {
             field: 'actions',
             headerName: 'Acciones',
@@ -75,7 +73,7 @@ const SubCategoryList: React.FC = () => {
         <Box sx={{ padding: 2 }}>
 
             <DataGridComponent rows={subcategories} columns={columns}>
-                Lista de Subcategorías
+                Lista de Sub-Categorías
             </DataGridComponent>
 
         </Box>

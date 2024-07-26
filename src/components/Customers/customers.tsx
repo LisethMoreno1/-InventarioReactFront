@@ -3,12 +3,12 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import type { CustomerCreate } from '../../interfaces/Customers/customers';
 import type { typeOfIdentification } from '../../interfaces/typeOfIdentification/typeOfIdentification';
-import { postCustomers } from '../../services/api/Customers/customersService';
 import { getTypeOfIdentifications } from '../../services/api/TypeOfIdentificationService/typeOfIdentificationService';
 import { customersSchema } from '../../types/Customers/customers';
 import { showErrorAlert, showSuccessAlert } from '../../Utils/alert';
 import { Orden } from '../../interfaces/Orden/orden';
 import { OrderForm } from '../Order/Order';
+import { postCustomers } from '../../services/api/CustomersServices/customersService';
 
 const CustomerForm: React.FC = () => {
     const [typeOfIdentifications, setTypeOfIdentifications] = useState<typeOfIdentification[]>([]);
@@ -30,7 +30,8 @@ const CustomerForm: React.FC = () => {
                 const order: Orden = {
                     id: 0, // Proporciona un valor predeterminado para id
                     entryDate: values.orderDate ? new Date(values.orderDate) : new Date(), // Usar la fecha actual si está vacío
-                    customerIdentificationNumber: values.identificationNumber, // Asignar identificación del cliente
+                    customerIdentificationNumber: values.identificationNumber, 
+                    orderNumber: values.orderNumber
                 };
 
                 // Crear el objeto de solicitud para el cliente

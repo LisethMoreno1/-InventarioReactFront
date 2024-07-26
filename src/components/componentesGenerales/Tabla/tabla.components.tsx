@@ -18,7 +18,7 @@ const DataGridComponent = <T extends GridValidRowModel>({ rows, columns, childre
                 borderRadius: 2,
                 boxShadow: 5,
                 width: '100%',
-                height: 500,
+                height: 490,
                 display: 'flex',
                 flexDirection: 'column'
             }}>
@@ -37,7 +37,7 @@ const DataGridComponent = <T extends GridValidRowModel>({ rows, columns, childre
                         initialState={{
                             pagination: {
                                 paginationModel: {
-                                    pageSize: 10,
+                                    pageSize: 5,
                                 },
                             },
                         }}

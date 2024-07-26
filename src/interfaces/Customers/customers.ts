@@ -10,7 +10,7 @@ export interface Customer {
   phone: string;
   email: string;
   address: string;
-  order: Orden;
+  order: Orden[];
 }
 
 export interface CustomerCreate {

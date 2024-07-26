@@ -20,7 +20,6 @@ const OrderDetails: React.FC = () => {
                 <Typography variant="h4" component="h2" gutterBottom>
                     Registro de detalles de orden
                 </Typography>
-
                 <FormInputsOrden />
                 <Box mt={3}>
                     <Button color="primary" variant="contained" fullWidth type="submit">

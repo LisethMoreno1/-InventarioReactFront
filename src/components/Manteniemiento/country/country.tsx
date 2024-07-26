@@ -4,11 +4,11 @@ import { Box, Button, Container, Grid, TextField, Tooltip, Typography } from '@m
 import { GridColDef } from '@mui/x-data-grid';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
-import { getCities, getDepartments, postCities, postDepartments } from '../../../services/api/Country/countryService';
 import useCountryStore from '../../../stores/Country';
 import { countrySchema } from '../../../types/Mantenimiento/country/country';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
+import { getCities, getDepartments, postCities, postDepartments } from '../../../services/api/CountryServices/countryService';
 
 interface CombinedData {
     id: number;
