@@ -4,9 +4,9 @@ import { purchaseOfProductI } from '../../../interfaces/PurchaseOfProduct/purcha
 const baseUrl = config.baseUrl;
 
 /* METODO GET */
-export const getProduct = async (): Promise<purchaseOfProductI[]> => {
+export const getPurchases = async (): Promise<purchaseOfProductI[]> => {
     try {
-        const response = await fetch(`${baseUrl}/products`);
+        const response = await fetch(`${baseUrl}/purchases`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -20,7 +20,7 @@ export const getProduct = async (): Promise<purchaseOfProductI[]> => {
 
 
 /* METODO POST */
-export const postProduct = async (purchaseOfProductRequest: purchaseOfProductI) => {
+export const postPurchases = async (purchaseOfProductRequest: purchaseOfProductI) => {
     const response = await fetch(`${baseUrl}/purchases`, {
         method: 'POST',
         headers: {

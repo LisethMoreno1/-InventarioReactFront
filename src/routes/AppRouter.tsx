@@ -29,6 +29,7 @@ import ListCustomersPages from '../pages/Customers/listCustomers';
 import ProductsPage from '../pages/Product/products';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ListProducts from '../components/Products/ListProduct';
+import ListPurchasePage from '../pages/purchaseOfProduct/ListPurchase';
 
 const AppRouter: RouteType[] = [
   {
@@ -121,6 +122,14 @@ const AppRouter: RouteType[] = [
         element: <ListProducts />,
         sidebarProps: {
           displayText: "Lista de Productos",
+          icon: <InventoryIcon />
+        }
+      },
+      {
+        path: "Lista de Compras",
+        element: <ListPurchasePage />,
+        sidebarProps: {
+          displayText: "Lista de Compras",
           icon: <InventoryIcon />
         }
       }

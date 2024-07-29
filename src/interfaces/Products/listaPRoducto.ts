@@ -4,7 +4,7 @@ export interface ProductIList {
   description: string;
   price: number;
   quantityAvailable: number;
-  Category:   {
-    categoryName: number | string;
+  category:   {
+    categoryName:  string;
   }
 }

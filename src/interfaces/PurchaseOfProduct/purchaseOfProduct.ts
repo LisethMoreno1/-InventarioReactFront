@@ -1,6 +1,12 @@
 export interface purchaseOfProductI {
   id: number;
-  productId: string;
-  customerIdentificationNumber: string;
+  product: {
+    nameofProduct: string;
+    price: number;
+  };
+  customer: {
+    identificationNumber: string;
+  };
   quantity: number;
+  purchaseCode: string;
 }

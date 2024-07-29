@@ -14,30 +14,18 @@ const ProductList: React.FC = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchProducts = async () => {
             try {
-                const data = await getProduct();
-                const transformedProducts: ProductIList[] = data.map(product => ({
-                    id: product.id,
-                    nameofProduct: product.nameofProduct,
-                    description: product.description,
-                    price: product.price,
-                    quantityAvailable: product.quantityAvailable,
-                    Category: {
-                        categoryName: product.Category?.categoryName
-                    }
-                }));
-
-                console.log('😑😑😑', transformedProducts);
-                setProducts(transformedProducts);
-                setLoading(false);
+                const fetchedProducts = await getProduct();
+                setProducts(fetchedProducts);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching products:', error);
+            } finally {
                 setLoading(false);
             }
         };
 
-        fetchData()
+        fetchProducts();
     }, []);
 
     const columns: GridColDef<ProductIList>[] = [
@@ -46,12 +34,7 @@ const ProductList: React.FC = () => {
         { field: 'description', headerName: 'Descripción', width: 150 },
         { field: 'price', headerName: 'Precio', type: 'number', width: 150 },
         { field: 'quantityAvailable', headerName: 'Cantidad Disponible', type: 'number', width: 200 },
-        {
-            field: 'Category',
-            headerName: 'Categoría',
-            width: 150,
-            renderCell: ({ row }) => row.Category ? row.Category.categoryName : 'No Category',
-        },
+        { field: 'category', headerName: 'Categoria', width: 100, renderCell: ({ row }) => row?.category?.categoryName },
         {
             field: 'actions',
             headerName: 'Acciones',
