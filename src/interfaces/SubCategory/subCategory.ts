@@ -4,3 +4,4 @@ export interface SubCategory {
   description: string;
   categoryId: number;
 }
+

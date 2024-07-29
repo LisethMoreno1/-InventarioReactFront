@@ -26,7 +26,9 @@ import RegistrePage from '../pages/Users/registre';
 
 import { RouteType } from './route';
 import ListCustomersPages from '../pages/Customers/listCustomers';
-
+import ProductsPage from '../pages/Product/products';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import ListProducts from '../components/Products/ListProduct';
 
 const AppRouter: RouteType[] = [
   {
@@ -95,6 +97,31 @@ const AppRouter: RouteType[] = [
         sidebarProps: {
           displayText: "Lista de Orden",
           icon: <HistoryIcon />
+        }
+      }
+    ],
+  },
+  {
+    path: "/Producto",
+    sidebarProps: {
+      displayText: "Productos",
+      icon: <InventoryIcon />
+    },
+    children: [
+      {
+        path: "Registro de Producto",
+        element: <ProductsPage />,
+        sidebarProps: {
+          displayText: "Registro de Producto",
+          icon: <InventoryIcon />
+        }
+      },
+      {
+        path: "Lista de Productos",
+        element: <ListProducts />,
+        sidebarProps: {
+          displayText: "Lista de Productos",
+          icon: <InventoryIcon />
         }
       }
     ],

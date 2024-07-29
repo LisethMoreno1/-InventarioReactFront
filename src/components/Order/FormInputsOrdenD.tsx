@@ -17,8 +17,6 @@ const FormInputsOrden: React.FC = () => {
         const fetchData = async () => {
             try {
                 await fetchCategoriesAndSubCategories();
-                console.log('Categorías:', categories);
-                console.log('Subcategorías:', subcategories);
             } catch (error) {
                 console.error(error);
             }
@@ -32,7 +30,7 @@ const FormInputsOrden: React.FC = () => {
         console.log('Categoría seleccionada:', selectedCategory);
         console.log('Subcategorías disponibles:', subcategories);
 
-        if (selectedCategory !== '') {
+        if (selectedCategory !== "") {
             const filtered = subcategories.filter(subcategory =>
                 subcategory.categoryId === selectedCategory
             );
@@ -42,6 +40,8 @@ const FormInputsOrden: React.FC = () => {
             setFilteredSubcategories(subcategories);
         }
     }, [selectedCategory, subcategories]);
+
+
 
 
     return (
