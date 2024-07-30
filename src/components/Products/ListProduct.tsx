@@ -109,7 +109,9 @@ const ProductList: React.FC = () => {
             {loading ? (
                 <div>Loading...</div>
             ) : (
-                <DataGridComponent rows={products} columns={columns} />
+                <DataGridComponent rows={products} columns={columns} >
+                    Lista de Productos
+                </DataGridComponent>
             )}
         </Box>
     );

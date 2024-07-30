@@ -29,7 +29,7 @@ const ListPurchase = () => {
         { field: 'nameofProduct', headerName: 'Nombre del Producto', width: 250, renderCell: ({ row }) => row?.product?.nameofProduct },
         { field: 'price', headerName: 'Precio', type: 'number', width: 100, renderCell: ({ row }) => row?.product?.price },
         { field: 'customer', headerName: 'Cliente', width: 100, renderCell: ({ row }) => row?.customer?.identificationNumber },
-        { field: 'quantity', headerName: 'Cantidad', width: 100 },
+        { field: 'quantity', headerName: 'quantity', width: 100 },
         { field: 'purchaseCode', headerName: 'Codigo de Compra', width: 250 },
     ];
 
