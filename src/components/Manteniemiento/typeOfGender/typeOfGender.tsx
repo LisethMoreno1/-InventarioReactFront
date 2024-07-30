@@ -7,7 +7,7 @@ import { GridColDef } from '@mui/x-data-grid';
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import { GenreInter } from '../../../interfaces/typeOfGenders/typeOfGenders';
-import { deleteTypeOfGenders, getTypeOfGenders, postTypeOfGenders } from '../../../services/api/GenreService/genreService';
+import { deleteTypeOfGenders, getTypeOfGenders, postTypeOfGenders } from '../../../services/api/genreService/genreService';
 import useTypeOfGenderStore from '../../../stores/TypeOfGenderStore';
 import { typeOfGendersSchema } from '../../../types/Mantenimiento/typeOfGenders/typeOfGenders';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
