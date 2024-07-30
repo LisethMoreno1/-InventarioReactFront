@@ -1,29 +1,34 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { Button, Container, Grid, Tooltip, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { GridColDef } from '@mui/x-data-grid';
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
-import { typeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentification';
-import { NewTypeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentificationCreate';
-import { deleteTypeOfIdentifications, getTypeOfIdentifications, postTypeOfIdentifications } from '../../../services/api/TypeOfIdentificationService/typeOfIdentificationService';
-import typeOfIdentificationStore from '../../../stores/TypeOfIdentificationStore';
-import { typeOfIdentificationsSchema } from '../../../types/Mantenimiento/typeOfIdentification/typeOfIdentification';
-import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button, Container, Grid, Tooltip, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { GridColDef } from "@mui/x-data-grid";
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { showErrorAlert, showSuccessAlert } from "../../../Utils/alert";
+import { typeOfIdentification } from "../../../interfaces/typeOfIdentification/typeOfIdentification";
+import { NewTypeOfIdentification } from "../../../interfaces/typeOfIdentification/typeOfIdentificationCreate";
+import {
+  deleteTypeOfIdentifications,
+  getTypeOfIdentifications,
+  postTypeOfIdentifications,
+} from "../../../services/api/typeOfIdentificationService/typeOfIdentificationService";
+import typeOfIdentificationStore from "../../../stores/TypeOfIdentificationStore";
+import { typeOfIdentificationsSchema } from "../../../types/Mantenimiento/typeOfIdentification/typeOfIdentification";
+import DataGridComponent from "../../componentesGenerales/Tabla/tabla.components";
 
 const TypeOfIdentification: React.FC = () => {
-  const { typeOfIdentification, setTypeOfIdentifications } = typeOfIdentificationStore((state) => ({
-    typeOfIdentification: state.typeOfIdentification,
-    setTypeOfIdentifications: state.setTypeOfIdentifications,
-  }));
+  const { typeOfIdentification, setTypeOfIdentifications } =
+    typeOfIdentificationStore((state) => ({
+      typeOfIdentification: state.typeOfIdentification,
+      setTypeOfIdentifications: state.setTypeOfIdentifications,
+    }));
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      identifier: '',
+      name: "",
+      identifier: "",
     },
     validationSchema: typeOfIdentificationsSchema,
     onSubmit: async (values, { resetForm }) => {
@@ -34,17 +39,19 @@ const TypeOfIdentification: React.FC = () => {
           identifier: values.identifier,
         };
 
-        const response = await postTypeOfIdentifications(typeOfIdentificationRequest);
+        const response = await postTypeOfIdentifications(
+          typeOfIdentificationRequest
+        );
         if (response.ok) {
-          showSuccessAlert('Tipo de identificación registrado exitosamente');
+          showSuccessAlert("Tipo de identificación registrado exitosamente");
           resetForm();
           const updatedTypeOfIdentifications = await getTypeOfIdentifications();
           setTypeOfIdentifications(updatedTypeOfIdentifications);
         } else {
-          showErrorAlert('Ya hiciste un Tipo de identificación con ese nombre');
+          showErrorAlert("Ya hiciste un Tipo de identificación con ese nombre");
         }
       } catch (error) {
-        showErrorAlert('Error al registrar el tipo de identificación');
+        showErrorAlert("Error al registrar el tipo de identificación");
       }
     },
   });
@@ -55,7 +62,7 @@ const TypeOfIdentification: React.FC = () => {
         const typeOfIdentificationsData = await getTypeOfIdentifications();
         setTypeOfIdentifications(typeOfIdentificationsData);
       } catch (error) {
-        console.error('Error al obtener tipos de identificación:', error);
+        console.error("Error al obtener tipos de identificación:", error);
       }
     };
 
@@ -63,14 +70,21 @@ const TypeOfIdentification: React.FC = () => {
   }, [setTypeOfIdentifications]);
 
   const columns: GridColDef<typeOfIdentification>[] = [
-    { field: 'name', headerName: 'Nombre', width: 350 },
-    { field: 'identifier', headerName: 'Código Identificador', width: 350 },
+    { field: "name", headerName: "Nombre", width: 350 },
+    { field: "identifier", headerName: "Código Identificador", width: 350 },
     {
-      field: 'Acciones',
-      headerName: 'Acciones',
+      field: "Acciones",
+      headerName: "Acciones",
       width: 150,
       renderCell: (params) => (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            marginTop: 1,
+          }}
+        >
           <Tooltip title="Editar">
             <Button
               color="primary"
@@ -78,10 +92,10 @@ const TypeOfIdentification: React.FC = () => {
               startIcon={<EditIcon />}
               onClick={() => handleEditClick(params.row)}
               sx={{
-                border: 'none',
-                boxShadow: 'none',
-                '&:hover': {
-                  boxShadow: 'none',
+                border: "none",
+                boxShadow: "none",
+                "&:hover": {
+                  boxShadow: "none",
                 },
               }}
             />
@@ -94,10 +108,10 @@ const TypeOfIdentification: React.FC = () => {
               startIcon={<DeleteIcon />}
               onClick={() => handleDeleteClick(params.row)}
               sx={{
-                border: 'none',
-                boxShadow: 'none',
-                '&:hover': {
-                  boxShadow: 'none',
+                border: "none",
+                boxShadow: "none",
+                "&:hover": {
+                  boxShadow: "none",
                 },
               }}
             />
@@ -111,15 +125,24 @@ const TypeOfIdentification: React.FC = () => {
     alert(`Editar tipo de identificación: ${typeOfIdentification.name}`);
   };
 
-  const handleDeleteClick = async (typeOfIdentification: typeOfIdentification) => {
+  const handleDeleteClick = async (
+    typeOfIdentification: typeOfIdentification
+  ) => {
     try {
       await deleteTypeOfIdentifications(typeOfIdentification);
       const updatedTypeOfIdentifications = await getTypeOfIdentifications();
-      showSuccessAlert(`Tipo de identificación ${typeOfIdentification.name} eliminado exitosamente`);
+      showSuccessAlert(
+        `Tipo de identificación ${typeOfIdentification.name} eliminado exitosamente`
+      );
       setTypeOfIdentifications(updatedTypeOfIdentifications);
     } catch (error) {
-      console.error('Hubo un problema al eliminar el tipo de identificación:', error);
-      showErrorAlert(`Hubo un problema al eliminar el tipo de identificación ${typeOfIdentification.name}`);
+      console.error(
+        "Hubo un problema al eliminar el tipo de identificación:",
+        error
+      );
+      showErrorAlert(
+        `Hubo un problema al eliminar el tipo de identificación ${typeOfIdentification.name}`
+      );
     }
   };
 
@@ -127,11 +150,11 @@ const TypeOfIdentification: React.FC = () => {
     <Container maxWidth="lg">
       <Box
         sx={{
-          backgroundColor: 'white',
+          backgroundColor: "white",
           padding: 4,
           borderRadius: 2,
           boxShadow: 5,
-          width: '100%',
+          width: "100%",
         }}
       >
         <Typography variant="h4" component="h2" gutterBottom>
@@ -162,13 +185,23 @@ const TypeOfIdentification: React.FC = () => {
                 id="identifier"
                 name="identifier"
                 label="Código identificador"
-                error={formik.touched.identifier && Boolean(formik.errors.identifier)}
-                helperText={formik.touched.identifier && formik.errors.identifier}
+                error={
+                  formik.touched.identifier && Boolean(formik.errors.identifier)
+                }
+                helperText={
+                  formik.touched.identifier && formik.errors.identifier
+                }
               />
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Button color="primary" variant="contained" fullWidth type="submit" sx={{ marginTop: 2 }}>
+              <Button
+                color="primary"
+                variant="contained"
+                fullWidth
+                type="submit"
+                sx={{ marginTop: 2 }}
+              >
                 Registrar
               </Button>
             </Grid>
@@ -177,8 +210,6 @@ const TypeOfIdentification: React.FC = () => {
       </Box>
 
       <Box mt={5}>
-
-
         <DataGridComponent rows={typeOfIdentification} columns={columns}>
           Lista de Tipo de Identificaciones
         </DataGridComponent>

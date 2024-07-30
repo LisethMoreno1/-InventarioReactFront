@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { registreSchema } from '../../../types/users/registre/registreSchemas';
 import { RolesInter } from '../../../interfaces/Rol/rol';
 import { getRoles } from '../../../services/api/RolesService/rolesService';
-import { getTypeOfIdentifications } from '../../../services/api/TypeOfIdentificationService/typeOfIdentificationService';
+import { getTypeOfIdentifications } from '../../../services/api/typeOfIdentificationService/typeOfIdentificationService';
 import { GenreInter } from '../../../interfaces/typeOfGenders/typeOfGenders';
 import { NewUser } from '../../../interfaces/Users/UserCreate';
 import { typeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentification';
