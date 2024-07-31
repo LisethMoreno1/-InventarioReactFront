@@ -15,12 +15,12 @@ import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import type { CustomerCreate } from "../../interfaces/Customers/customers";
 import type { typeOfIdentification } from "../../interfaces/typeOfIdentification/typeOfIdentification";
-import { getTypeOfIdentifications } from "../../services/api/typeOfIdentificationService/typeOfIdentificationService";
 import { customersSchema } from "../../types/Customers/customers";
 import { showErrorAlert, showSuccessAlert } from "../../Utils/alert";
 import { Orden } from "../../interfaces/Orden/orden";
 import { OrderForm } from "../Order/Order";
 import { postCustomers } from "../../services/api/CustomersServices/customersService";
+import { getTypeOfIdentifications } from "../../services/api/TypeOfIdentificationService/typeOfIdentificationService";
 
 const CustomerForm: React.FC = () => {
   const [typeOfIdentifications, setTypeOfIdentifications] = useState<
@@ -147,7 +147,7 @@ const CustomerForm: React.FC = () => {
                 onBlur={formik.handleBlur}
                 helperText={
                   formik.touched.identificationNumber &&
-                  formik.errors.identificationNumber
+                    formik.errors.identificationNumber
                     ? formik.errors.identificationNumber
                     : ""
                 }

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { postLogin } from "../../../services/api/loginService/singInService";
+import { postLogin } from "../../../services/api/LoginService/singInService";
 import { loginSchema } from "../../../types/Login/SignInSchemas";
 
 const SignIn: React.FC = () => {

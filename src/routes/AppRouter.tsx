@@ -3,6 +3,7 @@ import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import CategoryIcon from "@mui/icons-material/Category";
 import GroupIcon from "@mui/icons-material/Group";
 import HistoryIcon from "@mui/icons-material/History";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PersonIcon from "@mui/icons-material/Person";
 import PublicIcon from "@mui/icons-material/Public";
@@ -12,25 +13,24 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import TransgenderIcon from "@mui/icons-material/Transgender";
 import React from "react";
 import { ProtectedLayout } from "../components/Layout/ProtectedLayout";
+import ListProducts from "../components/Products/ListProduct";
 import UserList from "../components/users/ListOfUsers/ListUsers";
 import CategoryPages from "../pages/Category/Category";
 import SubCategoryPages from "../pages/Category/subCategory";
 import CustomersPages from "../pages/Customers/customers";
-
+import ListCustomersPages from "../pages/Customers/listCustomers";
+import CountryPage from "../pages/Mantenimiento/country";
+import RolesPage from "../pages/Mantenimiento/roles";
+import TypeOfGenderPage from "../pages/Mantenimiento/typeOfGender";
+import TypeOfIdentificationPage from "../pages/Mantenimiento/typeOfIdentification";
 import ListOrdenPage from "../pages/Orden/ListOrden";
 import OrderDetailsPage from "../pages/Orden/OrderDetails";
-import RegistrePage from "../pages/Users/registre";
-
-import { RouteType } from "./route";
-import ListCustomersPages from "../pages/Customers/listCustomers";
 import ProductsPage from "../pages/Product/products";
-import InventoryIcon from "@mui/icons-material/Inventory";
-import ListProducts from "../components/Products/ListProduct";
 import ListPurchasePage from "../pages/purchaseOfProduct/ListPurchase";
-import RolesPage from "../pages/mantenimiento/roles";
-import CountryPage from "../pages/mantenimiento/country";
-import TypeOfGenderPage from "../pages/mantenimiento/typeOfGender";
-import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
+import RegistrePage from "../pages/Users/registre";
+import { RouteType } from "./route";
+import PurchasePage from "../pages/purchaseOfProduct/Purchases";
+
 
 const AppRouter: RouteType[] = [
   {
@@ -131,6 +131,14 @@ const AppRouter: RouteType[] = [
         element: <ListPurchasePage />,
         sidebarProps: {
           displayText: "Lista de Compras",
+          icon: <InventoryIcon />,
+        },
+      },
+      {
+        path: "Registro de Compras",
+        element: <PurchasePage />,
+        sidebarProps: {
+          displayText: "Registro de Compras",
           icon: <InventoryIcon />,
         },
       },

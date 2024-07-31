@@ -5,7 +5,7 @@ import { Box, Button, Tooltip } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { User } from '../../../interfaces/Users/User';
-import { getUsers } from '../../../services/api/userService/userService';
+import { getUsers } from '../../../services/api/UserService/userService';
 import useStore from '../../../stores/UserStore';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
 

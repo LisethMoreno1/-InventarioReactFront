@@ -4,6 +4,6 @@ export interface ProductI {
   description: string;
   price: number;
   quantityAvailable: number;
-  categoryId: number;
+  categoryId?: number;
 }
 

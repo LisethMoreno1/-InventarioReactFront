@@ -1,14 +1,10 @@
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import { Box, Button, Container, Grid, TextField, Tooltip, Typography } from '@mui/material';
-import { GridColDef } from '@mui/x-data-grid';
+import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
+import { getCities, getDepartments, postCities, postDepartments } from '../../../services/api/CountryServices/countryService';
 import useCountryStore from '../../../stores/Country';
 import { countrySchema } from '../../../types/Mantenimiento/country/country';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
-import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
-import { getCities, getDepartments, postCities, postDepartments } from '../../../services/api/CountryServices/countryService';
 
 interface CombinedData {
     id: number;
@@ -19,12 +15,12 @@ interface CombinedData {
 }
 
 const Country: React.FC = () => {
-    const { country, setCountry } = useCountryStore(state => ({
+    const { setCountry } = useCountryStore(state => ({
         country: state.country,
         setCountry: state.setCountry,
     }));
 
-    const [combinedData, setCombinedData] = useState<CombinedData[]>([]);
+    const [, setCombinedData] = useState<CombinedData[]>([]);
 
     const formik = useFormik({
         initialValues: {
@@ -101,51 +97,7 @@ const Country: React.FC = () => {
         fetchCountry();
     }, [setCountry]);
 
-    const columns: GridColDef[] = [
-        { field: 'Department', headerName: 'Departamento', width: 250 },
-        { field: 'codeDepartment', headerName: 'Código Departamento', width: 150 },
-        { field: 'cities', headerName: 'Ciudad', width: 250 },
-        { field: 'codeCities', headerName: 'Código Ciudad', width: 150 },
-        {
-            field: 'actions',
-            headerName: 'Acciones',
-            width: 150,
-            renderCell: (params) => (
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                    <Tooltip title="Editar">
-                        <Button
-                            color="primary"
-                            size="small"
-                            startIcon={<EditIcon />}
-                            onClick={() => handleEditClick(params.row)}
-                            sx={{ border: 'none', boxShadow: 'none', '&:hover': { boxShadow: 'none' } }}
-                        />
-                    </Tooltip>
-                    <Tooltip title="Eliminar">
-                        <Button
-                            color="error"
-                            size="small"
-                            startIcon={<DeleteIcon />}
-                            onClick={() => handleDeleteClick(params.row)}
-                            sx={{ border: 'none', boxShadow: 'none', '&:hover': { boxShadow: 'none' } }}
-                        />
-                    </Tooltip>
-                </Box>
-            ),
-        },
-    ];
 
-    const handleEditClick = (row: CombinedData) => {
-        alert(`Editar: ${row.Department || row.cities}`);
-    };
-
-    const handleDeleteClick = async (row: CombinedData) => {
-        try {
-
-        } catch (error) {
-            showErrorAlert('Error al eliminar el registro');
-        }
-    };
 
     return (
         <Container maxWidth="lg">
@@ -222,11 +174,6 @@ const Country: React.FC = () => {
                         </Grid>
                     </Grid>
                 </form>
-            </Box>
-            <Box mt={5}>
-                <DataGridComponent rows={combinedData} columns={columns} >
-                    Lista de Cuidad y Departamento
-                </DataGridComponent>
             </Box>
         </Container>
     );
