@@ -9,7 +9,7 @@ import { typeOfIdentification } from "../../../interfaces/typeOfIdentification/t
 import {
     deleteTypeOfIdentifications,
     getTypeOfIdentifications
-} from "../../../services/api/TypeOfIdentificationService/typeOfIdentificationService";
+} from "../../../services/api/typeOfIdentificationService/typeOfIdentificationService";
 import typeOfIdentificationStore from "../../../stores/TypeOfIdentificationStore";
 import DataGridComponent from "../../componentesGenerales/Tabla/tabla.components";
 

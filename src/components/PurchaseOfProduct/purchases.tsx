@@ -12,7 +12,7 @@ import { purchaseSchema } from '../../types/purchaseOfProduct/purchaseOfProductS
 
 const Purchase: React.FC = () => {
     const navigate = useNavigate();
-    const { purchases, setPurchases } = usePurchaseStore((state) => ({
+    usePurchaseStore((state) => ({
         purchases: state.purchases,
         setPurchases: state.setPurchases,
     }));
@@ -86,7 +86,7 @@ const Purchase: React.FC = () => {
                                     value={selectedProduct}
                                     onChange={(e) => {
                                         setSelectedProduct(e.target.value as string);
-                                        formik.setFieldValue('productId', e.target.value); // Actualiza el valor en formik
+                                        formik.setFieldValue('productId', e.target.value); 
                                     }}
                                     label="Producto"
                                 >

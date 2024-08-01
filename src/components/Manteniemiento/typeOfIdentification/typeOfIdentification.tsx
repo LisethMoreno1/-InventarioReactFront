@@ -8,7 +8,7 @@ import { NewTypeOfIdentification } from "../../../interfaces/typeOfIdentificatio
 import {
   getTypeOfIdentifications,
   postTypeOfIdentifications
-} from "../../../services/api/TypeOfIdentificationService/typeOfIdentificationService";
+} from "../../../services/api/typeOfIdentificationService/typeOfIdentificationService";
 import typeOfIdentificationStore from "../../../stores/TypeOfIdentificationStore";
 import { typeOfIdentificationsSchema } from "../../../types/Mantenimiento/typeOfIdentification/typeOfIdentification";
 

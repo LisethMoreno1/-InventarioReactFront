@@ -3,13 +3,13 @@ import { useFormik } from 'formik';
 import { registreSchema } from '../../../types/users/registre/registreSchemas';
 import { RolesInter } from '../../../interfaces/Rol/rol';
 import { getRoles } from '../../../services/api/RolesService/rolesService';
-import { getTypeOfIdentifications } from '../../../services/api/TypeOfIdentificationService/typeOfIdentificationService';
+import { getTypeOfIdentifications } from '../../../services/api/typeOfIdentificationService/typeOfIdentificationService';
 import { GenreInter } from '../../../interfaces/typeOfGenders/typeOfGenders';
 import { NewUser } from '../../../interfaces/Users/UserCreate';
 import { typeOfIdentification } from '../../../interfaces/typeOfIdentification/typeOfIdentification';
 import { Box, Button, Container, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { getTypeOfGenders } from '../../../services/api/GenreService/genreService';
-import { PostUsers } from '../../../services/api/UserService/userService';
+import { getTypeOfGenders } from '../../../services/api/genreService/genreService';
+import { PostUsers } from '../../../services/api/userService/userService';
 
 const Registre: React.FC = () => {
   const [roles, setRoles] = useState<RolesInter[]>([]);

@@ -20,7 +20,7 @@ import { showErrorAlert, showSuccessAlert } from "../../Utils/alert";
 import { Orden } from "../../interfaces/Orden/orden";
 import { OrderForm } from "../Order/Order";
 import { postCustomers } from "../../services/api/CustomersServices/customersService";
-import { getTypeOfIdentifications } from "../../services/api/TypeOfIdentificationService/typeOfIdentificationService";
+import { getTypeOfIdentifications } from "../../services/api/typeOfIdentificationService/typeOfIdentificationService";
 
 const CustomerForm: React.FC = () => {
   const [typeOfIdentifications, setTypeOfIdentifications] = useState<

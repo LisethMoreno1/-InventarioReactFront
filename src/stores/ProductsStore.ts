@@ -1,20 +1,7 @@
-/* import create from "zustand";
-import { ProductI } from "../interfaces/Products/product";
 
-interface ProductsStore {
-  products: ProductI[] ;
-  setProducts: (products: ProductI[]) => void;
- 
-}
-
-export const useProductsStore = create<ProductsStore>((set) => ({
-  products: [],
-  setProducts: (products) => set({ products }),
- 
-})); */
 
 import create from "zustand";
-import { ProductIList } from "../interfaces/Products/listaPRoducto";
+import { ProductIList } from "../interfaces/Products/listaProduct";
 
 interface ProductsStore {
   products: ProductIList[];

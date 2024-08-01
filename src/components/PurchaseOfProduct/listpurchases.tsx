@@ -1,9 +1,11 @@
 import { CircularProgress, Container } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
+import 'jspdf-autotable';
 import React, { useEffect, useState } from 'react';
 import { purchaseOfProductI } from '../../interfaces/PurchaseOfProduct/purchaseOfProduct';
 import { getPurchases } from '../../services/api/PurchaseOfProductServices/purchaseOfProductService';
 import DataGridComponent from '../componentesGenerales/Tabla/tabla.components';
+import ButtonExport from './funcionExport/ButtonExportPurchase';
 
 const ListPurchase = () => {
     const [purchases, setPurchases] = useState<purchaseOfProductI[]>([]);
@@ -33,14 +35,18 @@ const ListPurchase = () => {
         { field: 'purchaseCode', headerName: 'Codigo de Compra', width: 250 },
     ];
 
+
+
     return (
         <Container maxWidth="lg">
             {loading ? (
                 <CircularProgress />
             ) : (
-                <DataGridComponent rows={purchases} columns={columns}>
-                    Lista de Compras
-                </DataGridComponent>
+                <>
+                    <DataGridComponent rows={purchases} columns={columns}>
+                        Lista de Compras   <ButtonExport />
+                    </DataGridComponent>
+                </>
             )}
         </Container>
     );

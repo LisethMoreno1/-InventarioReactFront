@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import { GridColDef } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
 import { GenreInter } from '../../../interfaces/typeOfGenders/typeOfGenders';
-import { deleteTypeOfGenders, getTypeOfGenders } from '../../../services/api/GenreService/genreService';
+import { deleteTypeOfGenders, getTypeOfGenders } from '../../../services/api/genreService/genreService';
 import useTypeOfGenderStore from '../../../stores/TypeOfGenderStore';
 import { showErrorAlert, showSuccessAlert } from '../../../Utils/alert';
 import DataGridComponent from '../../componentesGenerales/Tabla/tabla.components';
-import UpdateTypeOfGenderModal from './UpdateTypeOfGenderModal';
+import UpdateTypeOfGenderModal from './Actions/UpdateTypeOfGenderModal';
 
 const ListTypeOfGender: React.FC = () => {
     const { genreInter, setGenreInter } = useTypeOfGenderStore((state) => ({
@@ -115,3 +115,4 @@ const ListTypeOfGender: React.FC = () => {
 };
 
 export default ListTypeOfGender;
+

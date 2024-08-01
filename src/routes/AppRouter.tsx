@@ -19,10 +19,7 @@ import CategoryPages from "../pages/Category/Category";
 import SubCategoryPages from "../pages/Category/subCategory";
 import CustomersPages from "../pages/Customers/customers";
 import ListCustomersPages from "../pages/Customers/listCustomers";
-import CountryPage from "../pages/Mantenimiento/country";
-import RolesPage from "../pages/Mantenimiento/roles";
-import TypeOfGenderPage from "../pages/Mantenimiento/typeOfGender";
-import TypeOfIdentificationPage from "../pages/Mantenimiento/typeOfIdentification";
+
 import ListOrdenPage from "../pages/Orden/ListOrden";
 import OrderDetailsPage from "../pages/Orden/OrderDetails";
 import ProductsPage from "../pages/Product/products";
@@ -30,6 +27,11 @@ import ListPurchasePage from "../pages/purchaseOfProduct/ListPurchase";
 import RegistrePage from "../pages/Users/registre";
 import { RouteType } from "./route";
 import PurchasePage from "../pages/purchaseOfProduct/Purchases";
+import TypeOfGenderPage from "../pages/mantenimiento/typeOfGender";
+import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
+import RolesPage from "../pages/mantenimiento/roles";
+import CountryPage from "../pages/mantenimiento/country";
+import PaymentListPage from "../pages/Payment/Payment";
 
 
 const AppRouter: RouteType[] = [
@@ -127,6 +129,14 @@ const AppRouter: RouteType[] = [
         },
       },
       {
+        path: "Registro de Compras",
+        element: <PurchasePage />,
+        sidebarProps: {
+          displayText: "Registro de Compras",
+          icon: <InventoryIcon />,
+        },
+      },
+      {
         path: "Lista de Compras",
         element: <ListPurchasePage />,
         sidebarProps: {
@@ -134,12 +144,22 @@ const AppRouter: RouteType[] = [
           icon: <InventoryIcon />,
         },
       },
+
+    ],
+  },
+  {
+    path: "/pagos",
+    sidebarProps: {
+      displayText: "Pagos",
+      icon: <PersonIcon />,
+    },
+    children: [
       {
-        path: "Registro de Compras",
-        element: <PurchasePage />,
+        path: "Lista de Pagos",
+        element: <PaymentListPage />,
         sidebarProps: {
-          displayText: "Registro de Compras",
-          icon: <InventoryIcon />,
+          displayText: "Lista de Pagos",
+          icon: <AccountBoxIcon />,
         },
       },
     ],

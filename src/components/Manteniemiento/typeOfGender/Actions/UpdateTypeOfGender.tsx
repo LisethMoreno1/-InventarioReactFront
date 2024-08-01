@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
-import { getTypeOfGenderById, updateTypeOfGenders } from '../../../services/api/GenreService/genreService';
+import { getTypeOfGenderById, updateTypeOfGenders } from '../../../../services/api/genreService/genreService';
 
 interface UpdateTypeOfGenderProps {
     id: number;
