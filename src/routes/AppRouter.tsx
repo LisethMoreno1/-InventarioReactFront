@@ -11,7 +11,6 @@ import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRig
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import TransgenderIcon from "@mui/icons-material/Transgender";
 import React from "react";
-import { ProtectedLayout } from "../components/Layout/ProtectedLayout";
 import UserList from "../components/users/ListOfUsers/ListUsers";
 import CategoryPages from "../pages/Category/Category";
 import SubCategoryPages from "../pages/Category/subCategory";
@@ -21,24 +20,20 @@ import ListOrdenPage from "../pages/Orden/ListOrden";
 import OrderDetailsPage from "../pages/Orden/OrderDetails";
 import RegistrePage from "../pages/Users/registre";
 
-import { RouteType } from "./route";
-import ListCustomersPages from "../pages/Customers/listCustomers";
-import ProductsPage from "../pages/Product/products";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import ListProducts from "../components/Products/ListProduct";
-import ListPurchasePage from "../pages/purchaseOfProduct/ListPurchase";
-import RolesPage from "../pages/mantenimiento/roles";
+import ListCustomersPages from "../pages/Customers/listCustomers";
 import CountryPage from "../pages/mantenimiento/country";
+import RolesPage from "../pages/mantenimiento/roles";
 import TypeOfGenderPage from "../pages/mantenimiento/typeOfGender";
 import TypeOfIdentificationPage from "../pages/mantenimiento/typeOfIdentification";
+import ProductsPage from "../pages/Product/products";
+import ListPurchasePage from "../pages/purchaseOfProduct/ListPurchase";
+import { RouteType } from "./route";
 
 const AppRouter: RouteType[] = [
   {
-    path: "/",
-    element: <ProtectedLayout />,
-  },
-  {
-    path: "/registre",
+    path: "registre",
     sidebarProps: {
       displayText: "Usuario",
       icon: <PersonIcon />,
@@ -63,7 +58,7 @@ const AppRouter: RouteType[] = [
     ],
   },
   {
-    path: "/coustumer",
+    path: "coustumer",
     sidebarProps: {
       displayText: "Cliente",
       icon: <GroupIcon />,
@@ -104,7 +99,7 @@ const AppRouter: RouteType[] = [
     ],
   },
   {
-    path: "/Producto",
+    path: "Producto",
     sidebarProps: {
       displayText: "Productos",
       icon: <InventoryIcon />,
@@ -137,7 +132,7 @@ const AppRouter: RouteType[] = [
     ],
   },
   {
-    path: "/Mantenimiento",
+    path: "Mantenimiento",
     sidebarProps: {
       displayText: "Parametros",
       icon: <SettingsIcon />,
