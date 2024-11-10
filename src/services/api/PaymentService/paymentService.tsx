@@ -1,13 +1,12 @@
 import config from '../../../config/config.json';
-import { ProductIList } from '../../../interfaces/Products/listaProduct';
-import { ProductI } from '../../../interfaces/Products/product';
+import { PaymentI } from '../../../interfaces/Payment/Payment';
 
 const baseUrl = config.baseUrl;
 
 /* METODO GET */
-export const getProduct = async (): Promise<ProductIList[]> => {
+export const getPayment = async (): Promise<PaymentI[]> => {
     try {
-        const response = await fetch(`${baseUrl}/products`);
+        const response = await fetch(`${baseUrl}/payments`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -21,13 +20,13 @@ export const getProduct = async (): Promise<ProductIList[]> => {
 
 
 /* METODO POST */
-export const postProduct = async (productRequest: ProductI) => {
-    const response = await fetch(`${baseUrl}/products`, {
+export const postPayment = async (PaymentRequest: PaymentI) => {
+    const response = await fetch(`${baseUrl}/payments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(productRequest),
+        body: JSON.stringify(PaymentRequest),
     });
 
     if (!response.ok) {

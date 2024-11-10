@@ -1,12 +1,19 @@
 import config from '../../../config/config.json';
 import { purchaseOfProductI } from '../../../interfaces/PurchaseOfProduct/purchaseOfProduct';
+import { purchaseOfProduct } from '../../../interfaces/PurchaseOfProduct/purchaseOfProductReques';
 
 const baseUrl = config.baseUrl;
 
 /* METODO GET */
 export const getPurchases = async (): Promise<purchaseOfProductI[]> => {
     try {
-        const response = await fetch(`${baseUrl}/purchases`);
+        const response = await fetch(`${baseUrl}/purchases`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -20,7 +27,7 @@ export const getPurchases = async (): Promise<purchaseOfProductI[]> => {
 
 
 /* METODO POST */
-export const postPurchases = async (purchaseOfProductRequest: purchaseOfProductI) => {
+export const postPurchases= async (purchaseOfProductRequest: purchaseOfProduct) => {
     const response = await fetch(`${baseUrl}/purchases`, {
         method: 'POST',
         headers: {

@@ -8,5 +8,7 @@ export interface purchaseOfProductI {
     identificationNumber: string;
   };
   quantity: number;
-  purchaseCode: string;
+  purchaseCode?: string;
 }
+
+

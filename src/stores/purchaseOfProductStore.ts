@@ -1,9 +1,9 @@
 import create from "zustand";
-import { purchaseOfProductI } from "../interfaces/PurchaseOfProduct/purchaseOfProduct";
+import { purchaseOfProduct } from "../interfaces/PurchaseOfProduct/purchaseOfProductReques";
 
 interface PurchaseStore {
-  purchases: purchaseOfProductI[] | null;
-  setPurchases: (purchases: purchaseOfProductI[]) => void;
+  purchases: purchaseOfProduct[] | null;
+  setPurchases: (purchases: purchaseOfProduct[]) => void;
   clearPurchases: () => void;
 }
 

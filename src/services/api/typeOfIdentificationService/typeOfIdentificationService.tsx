@@ -42,8 +42,8 @@ export const postTypeOfIdentifications = async (typeOfIdentificationsRequest: Ne
 
 
 /* METODO DELETE */
-export const deleteTypeOfIdentifications = async (typeOfIdentification: typeOfIdentification) => {
-  const response = await fetch(`${baseUrl}/typeOfIdentifications/${typeOfIdentification.id}`, {
+export const deleteTypeOfIdentifications = async (TypeOfIdentification: typeOfIdentification) => {
+  const response = await fetch(`${baseUrl}/typeOfIdentifications/${TypeOfIdentification.id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -51,8 +51,7 @@ export const deleteTypeOfIdentifications = async (typeOfIdentification: typeOfId
   });
 
   if (!response.ok) {
-    throw new Error('La respuesta de la red no era correcta');
+    const errorText = await response.text();
+    throw new Error(`Error en la solicitud: ${errorText}`);
   }
-
-  return await response.json();
 };

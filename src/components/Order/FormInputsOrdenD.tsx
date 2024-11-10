@@ -26,15 +26,14 @@ const FormInputsOrden: React.FC = () => {
     }, [fetchCategoriesAndSubCategories]);
 
 
+    /*  Filtro la Categori y sus SubCategoria */
     useEffect(() => {
-        console.log('Categoría seleccionada:', selectedCategory);
-        console.log('Subcategorías disponibles:', subcategories);
 
         if (selectedCategory !== "") {
             const filtered = subcategories.filter(subcategory =>
-                subcategory.categoryId === selectedCategory
+                subcategory.category?.id === selectedCategory
             );
-            console.log('Subcategorías filtradas:', filtered);
+
             setFilteredSubcategories(filtered);
         } else {
             setFilteredSubcategories(subcategories);
@@ -85,7 +84,6 @@ const FormInputsOrden: React.FC = () => {
                         value={selectedCategory}
                         onChange={(e) => {
                             const value = Number(e.target.value);
-                            console.log('Categoría seleccionada:', value);
                             setSelectedCategory(value);
                         }}
                         label="Categoría"
