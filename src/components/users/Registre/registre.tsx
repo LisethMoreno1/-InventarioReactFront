@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   FormControl,
   FormHelperText,
@@ -10,8 +9,9 @@ import {
   Paper,
   Select,
   TextField,
-  ThemeProvider,
+  ThemeProvider
 } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { RolesInter } from "../../../interfaces/Rol/rol";
@@ -24,7 +24,7 @@ import { getTypeOfIdentifications } from "../../../services/api/typeOfIdentifica
 import { PostUsers } from "../../../services/api/userService/userService";
 import { theme } from "../../../styles/theme";
 import { registreSchema } from "../../../types/users/registre/registreSchemas";
-import Typography from "@mui/material/Typography";
+import ActionButton from "../../componentesGenerales/Boton/ActionButton";
 
 const Registre: React.FC = () => {
   const [roles, setRoles] = useState<RolesInter[]>([]);
@@ -410,27 +410,12 @@ const Registre: React.FC = () => {
                   </Grid>
                 </Grid>
 
-                <Box
-                  sx={{ display: "flex", justifyContent: "flex-end", mt: 3 }}
-                >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{
-                      bgcolor: "primary.main",
-                      color: "white",
-                      "&:hover": {
-                        bgcolor: "primary.dark",
-                      },
-                      textTransform: "none",
-                      py: 1,
-                      px: 4,
-                    }}
-                    disabled={loading} // Deshabilitar botón mientras carga
-                  >
-                    {loading ? "Guardando..." : "Guardar Usuario"}
-                  </Button>
-                </Box>
+                <ActionButton
+                  loading={loading}
+                  text="Guardar Usuario"
+                  loadingText="Guardando..."
+                  onClick={formik.handleSubmit}
+                />
               </form>
             </Box>
           </Paper>

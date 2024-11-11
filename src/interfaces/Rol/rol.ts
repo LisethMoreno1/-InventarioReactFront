@@ -1,5 +1,4 @@
 export interface RolesInter {
-    id: number
-    typeOfRole: string
-
+  id: number;
+  typeOfRole: string;
 }
